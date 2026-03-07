@@ -66,15 +66,19 @@ tugas-porto
 ├── assets
 │ └── images
 └── README.md
+```
 
 ---
 
 # 🛠️ Installation
-
+```bash
 git clone https://github.com/PutraFirdausR/tugas-porto.git
+```
 
 Masuk ke folder project
+```bash
 cd tugas-porto
+```
 
 
 Buka file `index.html` di browser.
