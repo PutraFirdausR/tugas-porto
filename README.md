@@ -57,9 +57,8 @@ Beberapa fitur yang terdapat dalam project ini:
 
 # 📂 Project Structure
 
-# 📂 Project Structure
-
 tugas-porto
+```plaintext
 │
 ├── index.html
 ├── style.css
