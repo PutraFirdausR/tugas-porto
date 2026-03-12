@@ -8,18 +8,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Efek header saat scroll
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 30) { // Threshold lebih kecil untuk efek lebih cepat
+        if (window.scrollY > 30) { 
             if(header) header.classList.add('scrolled');
         } else {
             if(header) header.classList.remove('scrolled');
         }
 
         // Tampilkan/sembunyikan tombol scroll to top
-        if (window.pageYOffset > 200) { // Threshold lebih kecil
+        if (window.pageYOffset > 200) { 
             if(scrollToTopBtn) {
                 if (scrollToTopBtn.style.display !== 'block') {
                     scrollToTopBtn.style.display = 'block';
-                    // Force reflow untuk memastikan transisi opacity berjalan
                     void scrollToTopBtn.offsetWidth;
                     scrollToTopBtn.style.opacity = '1';
                 }
@@ -27,9 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             if(scrollToTopBtn) {
                 scrollToTopBtn.style.opacity = '0';
-                // Sembunyikan setelah transisi selesai
                 setTimeout(() => {
-                    if (window.pageYOffset <= 200) { // Cek lagi untuk menghindari race condition
+                    if (window.pageYOffset <= 200) { 
                         scrollToTopBtn.style.display = 'none';
                     }
                 }, 300);
@@ -42,11 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            // const sectionHeight = section.clientHeight; // Tidak digunakan saat ini
             const distanceToTop = Math.abs(window.pageYOffset - (sectionTop - (header ? header.offsetHeight : 70) - 50));
-
             const rect = section.getBoundingClientRect();
-            // const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0); // Tidak digunakan saat ini
 
             if (rect.top <= (header ? header.offsetHeight : 70) + 50 && rect.bottom >= (header ? header.offsetHeight : 70) + 50) {
                 if (distanceToTop < minDistance) {
@@ -54,8 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     currentSectionId = section.getAttribute('id');
                 }
             } else if (rect.bottom > (header ? header.offsetHeight : 70) + 50 && rect.top < window.innerHeight && distanceToTop < minDistance) {
-                // Fallback jika tidak ada section yang pas di atas,
-                // tapi bagian bawahnya masih terlihat atau bagian atasnya baru masuk viewport
                 minDistance = distanceToTop;
                 currentSectionId = section.getAttribute('id');
             }
@@ -68,11 +61,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.classList.add('active');
             }
         });
+        
         // Jika di paling atas, set 'Beranda' sebagai aktif
         if (sections.length > 0 && window.pageYOffset < sections[0].offsetTop - (header ? header.offsetHeight : 70) - 100) {
             navLinks.forEach(link => link.classList.remove('active'));
             const homeLink = document.querySelector('nav ul li a[href="#hero"]');
             if(homeLink) homeLink.classList.add('active');
+        }
+    });
+
+    // =========================================
+    // FITUR DARK MODE
+    // =========================================
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const icon = darkModeToggle.querySelector('i');
+
+    const currentMode = localStorage.getItem('darkMode');
+    if (currentMode === 'enabled') {
+        body.classList.add('dark-mode');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun'); 
+    }
+
+    darkModeToggle.addEventListener('click', function() {
+        body.classList.toggle('dark-mode');
+        
+        if (body.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            localStorage.setItem('darkMode', 'enabled'); 
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+            localStorage.setItem('darkMode', 'disabled'); 
         }
     });
 
@@ -94,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
     document.addEventListener('click', function(event) {
         const isClickInsideNav = navLinksContainer && navLinksContainer.contains(event.target);
         const isClickOnToggle = menuToggle && menuToggle.contains(event.target);
@@ -115,24 +138,4 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
-
-    // Efek fade-in untuk seksi saat scroll
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -100px 0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, observerInstance) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, observerOptions);
-
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-
 });
