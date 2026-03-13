@@ -16,6 +16,8 @@ body {
     font-size: 16px;
     -webkit-font-smoothing: antialiased; 
     -moz-osx-font-smoothing: grayscale; 
+    overflow-x: hidden; /* Mencegah halaman bergeser ke kiri/kanan */
+    width: 100%;
 }
 
 /* =========================================
@@ -29,8 +31,8 @@ body {
     font-size: 1.3rem;
     color: #343a40;
     cursor: pointer;
-    margin-left: 20px;
-    margin-right: 15px; /* Jarak untuk responsif mobile */
+    margin-left: 25px; /* Ubah menjadi 0 agar menempel dengan menu navigasi */
+    margin-right: 15px; 
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -238,6 +240,7 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
+    margin-left: auto; /* Tambahkan baris ini untuk mendorong menu ke kanan */
 }
 
 nav ul li {
@@ -353,7 +356,7 @@ section h2.section-title::after {
 /* Hero Section */
 #hero {
     text-align: center;
-    background-color: #fdfdff;
+    background-color:=
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -442,8 +445,8 @@ section h2.section-title::after {
 
 /* About Section */
 #about {
-    background-color: #ffffff;
-    padding: 60px;
+    background-color: transparent; /* Mengubah warna menjadi transparan */
+    padding: 60px 0; 
 }
 
 .about-container {
@@ -1025,8 +1028,14 @@ footer {
     .about-image {
         margin-bottom: 30px;
     }
+    .about-image, .about-text {
+        min-width: 100%;
+    }
     .about-image img {
         max-width: 300px;
+    }
+    .about-container {
+        text-align: center;
     }
     .skills-list {
         justify-content: center;
