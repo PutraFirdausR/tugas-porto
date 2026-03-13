@@ -12,13 +12,6 @@ Website portofolio sederhana untuk menampilkan profil, skill, dan project.
 
 ---
 
-# 🚀 Demo
-
-🔗 Live Demo  
-https://putrafirdausr.github.io/tugas-porto/
-
----
-
 # 🧑‍💻 About The Project
 
 Project ini merupakan website portofolio sederhana yang dibuat untuk menampilkan informasi tentang diri, skill, serta project yang pernah dibuat.
