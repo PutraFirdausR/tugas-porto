@@ -16,7 +16,7 @@ body {
     font-size: 16px;
     -webkit-font-smoothing: antialiased; 
     -moz-osx-font-smoothing: grayscale; 
-    overflow-x: hidden; /* Mencegah halaman bergeser ke kiri/kanan */
+    overflow-x: hidden; 
     width: 100%;
 }
 
@@ -24,14 +24,13 @@ body {
    DARK MODE STYLES
    ========================================= */
 
-/* Tombol Toggle */
 .dark-mode-toggle {
     background: transparent;
     border: none;
     font-size: 1.3rem;
     color: #343a40;
     cursor: pointer;
-    margin-left: 25px; /* Ubah menjadi 0 agar menempel dengan menu navigasi */
+    margin-left: 25px;  
     margin-right: 15px; 
     transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -40,7 +39,6 @@ body {
     transform: scale(1.1);
 }
 
-/* Background dan Text Utama */
 body.dark-mode {
     background-color: #121212;
     color: #e4e6eb;
@@ -63,7 +61,7 @@ body.dark-mode nav ul li a {
 
 body.dark-mode nav ul li a:hover,
 body.dark-mode nav ul li a.active {
-    color: #4dabf7; /* Biru terang agar kontras di gelap */
+    color: #4dabf7; 
 }
 
 body.dark-mode nav ul li a::after {
@@ -240,7 +238,7 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
-    margin-left: auto; /* Tambahkan baris ini untuk mendorong menu ke kanan */
+    margin-left: auto; 
 }
 
 nav ul li {
@@ -445,7 +443,7 @@ section h2.section-title::after {
 
 /* About Section */
 #about {
-    background-color: transparent; /* Mengubah warna menjadi transparan */
+    background-color: transparent; 
     padding: 60px 0; 
 }
 
@@ -490,7 +488,6 @@ section h2.section-title::after {
     color: #495057;
 }
 
-/* --- Style untuk Kartu Informasi Personal --- */
 .personal-info-card {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -541,14 +538,12 @@ section h2.section-title::after {
     font-weight: 600;
 }
 
-/* --- Penyesuaian Jarak Form Kolaborasi --- */
 .profile-form .form-group {
-    /* Mengubah margin-bottom dari 20px menjadi 35px agar lebih berjarak */
     margin-bottom: 35px; 
 }
 
 .contact-form-container {
-    padding: 50px 40px; /* Menambah padding dalam form agar terlihat lebih lega */
+    padding: 50px 40px; 
 }
 
 .skills-list {
@@ -1055,7 +1050,7 @@ footer {
         transform: translateX(0);
         display: block; 
     }
-    /* Responsif untuk Form dan Footer di Mobile */
+    
     .contact-form-container {
         padding: 25px 20px;
     }
