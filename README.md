@@ -56,8 +56,7 @@ tugas-porto
 ├── index.html
 ├── style.css
 ├── script.js
-├── assets
-│ └── images
+├── img
 └── README.md
 ```
 
