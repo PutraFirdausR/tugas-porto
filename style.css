@@ -72,11 +72,7 @@ body.dark-mode .menu-toggle span {
     background-color: #e4e6eb;
 }
 
-/* Hero Section */
-body.dark-mode #hero {
-    background-color: #121212;
-}
-
+/* Hero Section Dark Mode */
 body.dark-mode .hero-content h1,
 body.dark-mode section h2.section-title {
     color: #e4e6eb;
@@ -101,8 +97,9 @@ body.dark-mode .hero-social-links a:hover {
     color: #121212;
 }
 
-/* Background Section & Cards */
+/* Section Backgrounds & Cards Dark Mode */
 body.dark-mode #about,
+body.dark-mode #experience,
 body.dark-mode .profile-table,
 body.dark-mode .contact-form-container,
 body.dark-mode .certificate-item,
@@ -116,29 +113,17 @@ body.dark-mode #projects {
     background-color: #121212;
 }
 
-body.dark-mode .personal-info-card,
 body.dark-mode .profile-table tr:hover {
     background-color: #242526;
-    border-color: #3a3b3c;
 }
 
-/* Teks dan Detail di dalam Cards */
-body.dark-mode .info-item i {
-    background: #18191a;
-}
-
-body.dark-mode .info-item span,
+/* Teks & Detail di Cards Dark Mode */
 body.dark-mode .certificate-content h3,
 body.dark-mode .project-item h3 {
     color: #e4e6eb;
 }
 
-body.dark-mode .skills-list li {
-    background-color: #242526;
-    color: #4dabf7;
-}
-
-/* Tabel */
+/* Tabel Dark Mode */
 body.dark-mode .profile-table th {
     background-color: #242526;
     border-bottom-color: #3a3b3c;
@@ -150,7 +135,7 @@ body.dark-mode .profile-table td {
     color: #b0b3b8;
 }
 
-/* Form Interaktif */
+/* Form Dark Mode */
 body.dark-mode .profile-form input,
 body.dark-mode .profile-form textarea {
     background-color: #242526;
@@ -162,18 +147,7 @@ body.dark-mode .profile-form label {
     color: #e4e6eb;
 }
 
-body.dark-mode #about,
-body.dark-mode #experience,
-body.dark-mode .profile-table,
-body.dark-mode .contact-form-container,
-body.dark-mode .certificate-item,
-body.dark-mode .certificate-content,
-body.dark-mode .project-item {
-    background-color: #18191a;
-    border-color: #3a3b3c;
-}
-
-/* Penyesuaian Responsif (Mobile Menu) */
+/* Penyesuaian Responsif (Mobile Menu Dark Mode) */
 @media (max-width: 768px) {
     body.dark-mode nav ul {
         background-color: rgba(24, 25, 26, 0.98);
@@ -228,13 +202,6 @@ nav {
     color: #343a40;
 }
 
-.websitelogo{
-    width: 50px;
-    height: 50px; 
-    margin-right: 10px; 
-    vertical-align: middle;
-}
-
 nav ul {
     list-style: none;
     display: flex;
@@ -255,7 +222,6 @@ nav ul li a {
     position: relative;
 }
 
-/* Efek garis bawah pada hover/active */
 nav ul li a::after {
     content: '';
     position: absolute;
@@ -351,10 +317,12 @@ section h2.section-title::after {
     border-radius: 3px;
 }
 
-/* Hero Section */
+/* =========================================
+   HERO SECTION & TYPEWRITER
+   ========================================= */
 #hero {
     text-align: center;
-    background-color:=
+    background-color: transparent;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -432,7 +400,6 @@ section h2.section-title::after {
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     margin-top: 20px;
     box-shadow: 0 5px 20px rgba(0, 98, 204, 0.25);
-    letter-spacing: 0.5px;
 }
 
 .cta-button:hover {
@@ -441,7 +408,35 @@ section h2.section-title::after {
     box-shadow: 0 8px 25px rgba(0, 98, 204, 0.3);
 }
 
-/* About Section */
+/* Animasi Typewriter */
+.typing-effect {
+    border-right: 3px solid transparent; 
+    padding-right: 5px;
+}
+
+@keyframes blink {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: #0062cc; } 
+}
+
+@keyframes blink-dark {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: #4dabf7; } 
+}
+
+.fade-in-text {
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in forwards;
+    animation-delay: 3s; 
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* =========================================
+   ABOUT SECTION (GRID CARDS)
+   ========================================= */
 #about {
     background-color: transparent; 
     padding: 60px 0; 
@@ -450,24 +445,26 @@ section h2.section-title::after {
 .about-container {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start; 
-    gap: 60px; 
+    align-items: center; 
+    gap: 70px; 
 }
 
 .about-image {
     flex: 1;
     min-width: 300px;
-    text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .about-image img {
     width: 100%;
-    max-width: 380px;
+    max-width: 400px;
     height: auto;
     border-radius: 16px; 
     object-fit: cover;
-    box-shadow: 0 10px 30px rgba(190, 194, 255, 0.08); 
-    border: 6px solid rgba(0, 98, 204, 0.25);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+    display: block;
+    margin: 0 auto;
 }
 
 .about-text {
@@ -486,64 +483,67 @@ section h2.section-title::after {
     margin-bottom: 18px;
     font-size: 1.1rem; 
     color: #495057;
+    text-align: justify; 
 }
 
-.personal-info-card {
+.personal-info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    background-color: #f8f9fc;
-    padding: 25px;
-    border-radius: 12px;
-    margin: 30px 0;
-    border: 1px solid #eef3f8;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    gap: 15px;
+    margin: 35px 0;
 }
 
-.info-item {
+.info-card {
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     gap: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    border: 1px solid #eef3f8;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.info-item i {
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 98, 204, 0.12);
+}
+
+.info-card i {
     font-size: 1.3rem;
     color: #0062cc;
-    background: #ffffff;
+    background: #eef3f8;
     width: 45px;
     height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0, 98, 204, 0.1);
-    flex-shrink: 0;
+    border-radius: 8px;
 }
 
-.info-item div {
+.info-card div {
     display: flex;
     flex-direction: column;
 }
 
-.info-item strong {
-    font-size: 0.85rem;
+.info-card strong {
+    font-size: 0.8rem;
     color: #6c757d;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-.info-item span {
-    font-size: 1rem;
+.info-card span {
+    font-size: 0.95rem;
     color: #212529;
     font-weight: 600;
 }
 
-.profile-form .form-group {
-    margin-bottom: 35px; 
-}
-
-.contact-form-container {
-    padding: 50px 40px; 
+.about-text h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #212529;
 }
 
 .skills-list {
@@ -552,26 +552,83 @@ section h2.section-title::after {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-top: 25px;
 }
 
 .skills-list li {
-    background-color: #eef3f8; 
-    color: #0062cc; 
+    background-color: #f8f9fc; 
+    color: #495057; 
     padding: 10px 18px;
     border-radius: 50px;
     font-size: 0.95rem;
     font-weight: 600; 
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 1px solid #eef3f8;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.skills-list li i {
+    color: #0062cc;
 }
 
 .skills-list li:hover {
     background-color: #0062cc;
     color: #fff;
-    transform: translateY(-2px);
+    border-color: #0062cc;
+    transform: translateY(-3px);
 }
 
-/* --- Style untuk Tabel --- */
+.skills-list li:hover i {
+    color: #fff;
+}
+
+/* Dark Mode About Section */
+body.dark-mode .info-card {
+    background: #18191a;
+    border-color: #3a3b3c;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .info-card:hover {
+    box-shadow: 0 8px 25px rgba(77, 171, 247, 0.1);
+}
+
+body.dark-mode .info-card i {
+    background: #242526;
+    color: #4dabf7;
+}
+
+body.dark-mode .info-card span,
+body.dark-mode .about-text h4 {
+    color: #e4e6eb;
+}
+
+body.dark-mode .skills-list li {
+    background-color: #18191a;
+    color: #b0b3b8;
+    border-color: #3a3b3c;
+}
+
+body.dark-mode .skills-list li i {
+    color: #4dabf7;
+}
+
+body.dark-mode .skills-list li:hover {
+    background-color: #4dabf7;
+    color: #121212;
+}
+
+body.dark-mode .skills-list li:hover i {
+    color: #121212;
+}
+
+body.dark-mode .about-image::before {
+    border-color: #4dabf7;
+}
+
+
+/* --- Tabel Experience --- */
 .profile-table {
     width: 100%;
     border-collapse: collapse;
@@ -597,52 +654,7 @@ section h2.section-title::after {
     background-color: #f8f9fc;
 }
 
-/* --- Style untuk Form Kontak --- */
-.contact-form-container {
-    max-width: 650px;
-    margin: 0 auto;
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-}
-
-.profile-form .form-group {
-    margin-bottom: 20px;
-}
-
-.profile-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #343a40;
-}
-
-.profile-form input,
-.profile-form textarea {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #ced4da;
-    border-radius: 8px;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    color: #495057;
-    background-color: #fdfdff;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.profile-form input:focus,
-.profile-form textarea:focus {
-    outline: none;
-    border-color: #0062cc;
-    box-shadow: 0 0 0 3px rgba(0, 98, 204, 0.15);
-}
-
-.profile-form textarea {
-    resize: vertical;
-}
-
-/* --- Bagian Certificate --- */
+/* --- Sertifikat --- */
 .certificate-flex {
     display: flex;
     flex-wrap: wrap;
@@ -714,7 +726,9 @@ section h2.section-title::after {
     font-size: 0.85rem;
 }
 
-/* Projects Section */
+/* =========================================
+   PROJECTS SECTION
+   ========================================= */
 #projects {
     background-color: #f8f9fc;
     padding: 60px 0;
@@ -808,6 +822,161 @@ section h2.section-title::after {
 
 .project-links a i {
     margin-right: 6px;
+}
+
+/* =========================================
+   CONTACT SECTION & CUSTOM ALERT
+   ========================================= */
+.contact-form-container {
+    max-width: 650px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+}
+
+.profile-form .form-group {
+    margin-bottom: 20px;
+}
+
+.profile-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #343a40;
+}
+
+.profile-form input,
+.profile-form textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #495057;
+    background-color: #fdfdff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-form input:focus,
+.profile-form textarea:focus {
+    outline: none;
+    border-color: #0062cc;
+    box-shadow: 0 0 0 3px rgba(0, 98, 204, 0.15);
+}
+
+.profile-form textarea {
+    resize: vertical;
+}
+
+/* Custom Alert Popup */
+.custom-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.custom-alert-box {
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-width: 350px;
+    width: 90%;
+    transform: scale(0.7);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+.custom-alert-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.custom-alert-overlay.show .custom-alert-box {
+    transform: scale(1);
+}
+
+.alert-icon {
+    font-size: 50px;
+    color: #28a745; 
+    margin-bottom: 15px;
+}
+
+.custom-alert-box h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.custom-alert-box p {
+    margin-bottom: 25px;
+    color: #6c757d;
+}
+
+.alert-close-btn {
+    background-color: #0062cc; 
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.alert-close-btn:hover {
+    background-color: #0056b3;
+}
+
+body.dark-mode .custom-alert-box {
+    background: #1e1e1e;
+}
+body.dark-mode .custom-alert-box h3 {
+    color: #e4e6eb;
+}
+body.dark-mode .custom-alert-box p {
+    color: #a0a0a0;
+}
+
+/* =========================================
+   CURSOR SHOWCASE (PORTFOLIO HOVER EFFECT)
+   ========================================= */
+#cursorShowcase {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 350px; 
+    height: 220px;
+    border-radius: 12px;
+    pointer-events: none; 
+    z-index: 9999;
+    opacity: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    transform: translate(calc(var(--x, 0) - 50%), calc(var(--y, 0) - 50%)) scale(0.5);
+    transition: opacity 0.3s ease, transform 0.1s linear; 
+}
+
+#cursorShowcase.visible {
+    opacity: 1;
+    transform: translate(calc(var(--x, 0) - 50%), calc(var(--y, 0) - 50%)) scale(1);
+    transition: opacity 0.3s ease, transform 0.15s ease-out;
 }
 
 /* --- Footer Styling --- */
@@ -966,10 +1135,6 @@ footer {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 30px;
     }
-    .certificate-grid {
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 25px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1029,9 +1194,6 @@ footer {
     .about-image img {
         max-width: 300px;
     }
-    .about-container {
-        text-align: center;
-    }
     .skills-list {
         justify-content: center;
     }
@@ -1045,12 +1207,6 @@ footer {
         flex: 1 1 100%; 
         max-width: 100%; 
     }
-    .timeline-line-element {
-        left: 20px;
-        transform: translateX(0);
-        display: block; 
-    }
-    
     .contact-form-container {
         padding: 25px 20px;
     }
@@ -1075,6 +1231,10 @@ footer {
     .footer-thanks h4::after {
         left: 50%;
         transform: translateX(-50%); 
+    }
+    /* Sembunyikan efek melayang di layar HP */
+    #cursorShowcase {
+        display: none !important;
     }
 }
 
@@ -1102,11 +1262,7 @@ footer {
     .certificate-content h3 {
         font-size: 1.2rem;
     }
-}
-
-/* Penyesuaian responsif di mobile untuk Kartu Info */
-@media (max-width: 480px) {
-    .personal-info-card {
+    .personal-info-card, .personal-info-grid {
         grid-template-columns: 1fr; 
         padding: 20px;
     }

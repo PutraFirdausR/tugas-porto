@@ -138,4 +138,89 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
-});
+
+    // =========================================
+    // FITUR EFEK MESIN TIK (TYPEWRITER)
+    // =========================================
+    const typingElements = document.querySelectorAll('.typing-effect');
+    let typingDelay = 500; 
+
+    typingElements.forEach((element) => {
+        const textToType = element.getAttribute('data-text');
+        element.textContent = ''; 
+        
+        setTimeout(() => {
+            let charIndex = 0;
+            element.classList.add('active-cursor'); 
+            
+            function typeWriter() {
+                if (charIndex < textToType.length) {
+                    element.textContent += textToType.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 50); 
+                } else {
+                    element.classList.remove('active-cursor'); 
+                }
+            }
+            typeWriter();
+        }, typingDelay);
+
+        typingDelay += (textToType.length * 50) + 800; 
+    });
+
+    // =========================================
+    // FITUR CURSOR SHOWCASE PORTOFOLIO
+    // =========================================
+    const cursorShowcase = document.getElementById('cursorShowcase');
+    const projectItemsElements = document.querySelectorAll('.project-item');
+
+    document.addEventListener('mousemove', (e) => {
+        if(cursorShowcase) {
+            cursorShowcase.style.setProperty('--x', e.clientX + 'px');
+            cursorShowcase.style.setProperty('--y', e.clientY + 'px');
+        }
+    });
+
+    // Menambahkan event saat mouse masuk dan keluar dari kartu portofolio
+    projectItemsElements.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            const img = this.querySelector('.project-image-container img');
+            if (img && cursorShowcase) {
+                cursorShowcase.style.backgroundImage = `url(${img.src})`;
+                cursorShowcase.classList.add('visible'); 
+            }
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            if(cursorShowcase) {
+                cursorShowcase.classList.remove('visible');
+            }
+        });
+    });
+
+}); // Penutup DOMContentLoaded
+
+// ================================
+// FUNGSI UNTUK CUSTOM ALERT FORM 
+// ================================
+
+function tampilkanAlert() {
+    const form = document.getElementById('contactForm');
+    
+    if (form.checkValidity()) {
+        const alertBox = document.getElementById('customAlert');
+        alertBox.classList.add('show');
+        
+
+    } else {
+        form.reportValidity();
+    }
+}
+
+function tutupAlert() {
+    const alertBox = document.getElementById('customAlert');
+    alertBox.classList.remove('show');
+    
+    // Mereset (mengosongkan) form setelah pesan sukses ditutup
+    document.getElementById('contactForm').reset();
+}
