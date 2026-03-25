@@ -6,394 +6,425 @@
     <link rel="icon" href="img/logo.png" type="image/png" sizes="16x16">
     <title>Portofolio Saya - Putra Firdaus</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<header id="header">
-    <nav class="container">
-        <a href="#" class="logo">Putra<span>Firdaus.</span></a>
-        <ul class="nav-links">
-            <li><a href="#hero" class="nav-link active">Home</a></li>
-            <li><a href="#about" class="nav-link">About Me</a></li>
-            <li><a href="#certificate" class="nav-link">Certificate</a></li>
-            <li><a href="#projects" class="nav-link">Project</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-        <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle Dark Mode">
-          <i class="fa-solid fa-moon"></i>
-        </button>
-        <button class="menu-toggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </nav>
-</header>
+<body class="dark-mode">
 
-<main>
-    <section id="hero" class="container">
-        <div class="hero-content">
-            <h1>Halo, saya<br>
-                <span class="highlight typing-effect" data-text="PUTRA FIRDAUS RAMANDANI"></span>
-            </h1>
-            <p class="subtitle typing-effect" data-text="FrontEnd Developer | Social Media Marketing"></p>
-            <p class="hero-description fade-in-text">Saya berdedikasi untuk terus mengembangkan pengetahuan dan keterampilan saya di bidang pengembangan teknologi. Berbekal Pengetahuan di bidang Desain Grafis, Pengembangan Front-End, dan Social Media Marketing.</p>
-            
-            <div class="hero-social-links" style="margin-bottom: 35px;">
-                <a href="https://www.linkedin.com/in/putra-firdaus-ramandani-1b3a5327b/" target="_blank" aria-label="LinkedIn">
-                    <i class="fa-brands fa-linkedin"></i>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+    <header id="header">
+        <nav class="container">
+            <a href="#" class="logo">Putra<span>Firdaus.</span></a>
+            <ul class="nav-links">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About Me</a></li>
+                <li><a href="#certificate" class="nav-link">Certificate</a></li>
+                <li><a href="#projects" class="nav-link">Project</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle Dark Mode">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ==================== HERO SECTION ==================== -->
+        <section id="hero">
+            <!-- Animated Blobs -->
+            <div class="hero-blob hero-blob-1"></div>
+            <div class="hero-blob hero-blob-2"></div>
+            <div class="hero-blob hero-blob-3"></div>
+
+            <div class="container hero-wrapper">
+                <div class="hero-content">
+                    <h1>Halo, saya<br>
+                        <span class="highlight typing-effect" data-text="PUTRA FIRDAUS RAMANDANI"></span>
+                    </h1>
+                    <p class="subtitle typing-effect" data-text="FrontEnd Developer | Social Media Marketing"></p>
+                    <p class="hero-description fade-in-text">Saya berdedikasi untuk terus mengembangkan pengetahuan dan keterampilan saya di bidang pengembangan teknologi. Berbekal Pengetahuan di bidang Desain Grafis, Pengembangan Front-End, dan Social Media Marketing.</p>
+
+                    <div class="hero-social-links">
+                        <a href="https://www.linkedin.com/in/putra-firdaus-ramandani-1b3a5327b/" target="_blank" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/PutraFirdausR" target="_blank" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="https://www.instagram.com/meputtra/" target="_blank" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+
+                    <a href="#projects" class="cta-button magnetic-btn">
+                        <span>Lihat Karya Saya</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ABOUT SECTION ==================== -->
+        <section id="about" class="container">
+            <div class="section-number" aria-hidden="true">01</div>
+            <h2 class="section-title reveal-up">Tentang Saya</h2>
+            <div class="about-container">
+                <div class="about-image reveal-left">
+                    <img src="img/profile.jpg" alt="Foto Profil Putra Firdaus Ramandani">
+                </div>
+
+                <div class="about-text reveal-right">
+                    <h3>Perjalanan dan Keahlian Saya</h3>
+                    <p>Perjalanan saya di dunia coding dimulai sejak duduk di bangku SMK kelas 11. Jujur saja, awalnya saya tertarik karena terlihat keren! Namun, semakin dalam saya menyelami baris demi baris kode, saya menyadari satu hal penting: pemrograman adalah jantung dari transformasi digital.</p>
+                    <p>Sejak saat itu, rasa ingin tahu saya tidak terbendung. Saya belajar siang dan malam melalui berbagai kursus dan tutorial. Kerja keras tersebut membuahkan hasil melalui beberapa proyek pribadi dan kesempatan bekerja secara profesional sebagai programmer. Saya percaya bahwa dengan logika dan kreativitas, tidak ada masalah yang tidak bisa diselesaikan.</p>
+
+                    <div class="personal-info-grid stagger-children">
+                        <div class="info-card reveal-up">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <div>
+                                <strong>Umur</strong>
+                                <span>20 Tahun</span>
+                            </div>
+                        </div>
+                        <div class="info-card reveal-up">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <strong>Tempat Lahir</strong>
+                                <span>Semarang</span>
+                            </div>
+                        </div>
+                        <div class="info-card reveal-up">
+                            <i class="fa-solid fa-school"></i>
+                            <div>
+                                <strong>Sekolah</strong>
+                                <span>SMKN 11 Semarang</span>
+                            </div>
+                        </div>
+                        <div class="info-card reveal-up">
+                            <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+                            <div>
+                                <strong>Hobi</strong>
+                                <span>Bulu Tangkis</span>
+                            </div>
+                        </div>
+                        <div class="info-card reveal-up">
+                            <i class="fa-solid fa-phone"></i>
+                            <div>
+                                <strong>Kontak</strong>
+                                <span>081225208437</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4>Keahlian Utama:</h4>
+                    <ul class="skills-list">
+                        <li><i class="fa-brands fa-html5"></i> HTML5 & CSS3</li>
+                        <li><i class="fa-brands fa-js"></i> JavaScript (ES6+)</li>
+                        <li><i class="fa-solid fa-wind"></i> Tailwind</li>
+                        <li><i class="fa-brands fa-python"></i> Python</li>
+                        <li><i class="fa-brands fa-vuejs"></i> Vue</li>
+                        <li><i class="fa-brands fa-php"></i> PHP</li>
+                        <li><i class="fa-solid fa-database"></i> MySQL</li>
+                        <li><i class="fa-brands fa-sass"></i> Sass</li>
+                        <li><i class="fa-brands fa-git-alt"></i> Git & Github</li>
+                        <li><i class="fa-brands fa-figma"></i> UI/UX & Desain</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== EXPERIENCE SECTION ==================== -->
+        <section id="experience" class="container">
+            <div class="section-number" aria-hidden="true">02</div>
+            <div class="table-container" style="overflow-x: auto;">
+                <h3 class="reveal-up experience-title">Rincian Pengalaman & Kolaborasi</h3>
+                <table class="profile-table reveal-up">
+                    <thead>
+                        <tr>
+                            <th>Kategori</th>
+                            <th>Detail Kompetensi / Proyek</th>
+                            <th>Keterangan Tambahan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Keterampilan Teknis</strong></td>
+                            <td>Vue.js, Tailwind, JavaScript, PHP, MySQL</td>
+                            <td>Berfokus pada pengembangan Front-End yang dinamis, responsif, serta integrasi sistem Back-End sederhana.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pengalaman Freelance</strong></td>
+                            <td>Proyek Omabling & Company Profile Unsoed FH</td>
+                            <td>Membangun antarmuka interaktif dan menyediakan fitur-fitur yang disesuaikan dengan kebutuhan instansi.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kolaborasi Tim</strong></td>
+                            <td>Website Unsoed FH</td>
+                            <td>Bekerja sama dengan tim developer lain untuk membagi tugas pengembangan fitur dan memastikan sistem berjalan lancar sesuai tenggat waktu.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mini Projects (Mandiri)</strong></td>
+                            <td>Kenzo Movie, Firdaus Residence, Calculator, Portofolio</td>
+                            <td>Eksplorasi penggunaan API eksternal, pembuatan kalkulator logis, serta penggunaan library animasi seperti GSAP & AOS.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Desain Grafis & Social Media Marketing</strong></td>
+                            <td>Desain Cetak (Banner, Poster, Sampul Buku), Konten Instagram, Monthly SMM Report</td>
+                            <td>Merancang kalender konten untuk 30 hari, membuat desain visual, serta menyusun laporan media sosial bulanan. <a href="https://drive.google.com/drive/folders/1MHN7zTQXSPaso-3Y8RB94wxVHsXQonJa" target="_blank">Lihat Desain</a>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ==================== CERTIFICATE SECTION ==================== -->
+        <section id="certificate" class="container">
+            <div class="section-number" aria-hidden="true">03</div>
+            <h2 class="section-title reveal-up">Sertifikat</h2>
+            <div class="certificate-flex">
+                <a href="https://storage.googleapis.com/myskill-v2-certificates/topic-ZIWNpsfNZkE1B2rWr69H/fZpJp5JC9WWsmeybN4pNHO1bOQf2-dQ5VGAYi73bfAmIQLd4a.pdf" target="_blank" class="certificate-item reveal-up">
+                    <img src="img/vue.png" alt="Sertifikat Frontend Vue" class="certificate-image">
+                    <div class="certificate-content">
+                        <h3>Frontend Vue</h3>
+                        <p class="certificate-issuer">MySkill</p>
+                        <p class="certificate-date">Lulus: October 2024</p>
+                    </div>
                 </a>
-                <a href="https://github.com/PutraFirdausR" target="_blank" aria-label="GitHub">
-                    <i class="fa-brands fa-github"></i>
+                <a href="https://storage.googleapis.com/myskill-v2-certificates/topic-pTLX6J38RGSQ4dfEO6yQ/fZpJp5JC9WWsmeybN4pNHO1bOQf2-87s8vOHDPQbIr4JjiD7Q.pdf" target="_blank" class="certificate-item reveal-up">
+                    <img src="img/js.png" alt="Sertifikat FrontEnd JavaScript" class="certificate-image">
+                    <div class="certificate-content">
+                        <h3>JavaScript</h3>
+                        <p class="certificate-issuer">MySkill</p>
+                        <p class="certificate-date">Lulus: August 2024</p>
+                    </div>
                 </a>
-                <a href="https://www.instagram.com/meputtra/" target="_blank" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
+                <a href="https://storage.googleapis.com/myskill-v2-certificates/course-GeueYoOAoIi58XZ0MWA9/fZpJp5JC9WWsmeybN4pNHO1bOQf2-W2IiY0dRHD3zkJCgX85X.pdf" target="_blank" class="certificate-item reveal-up">
+                    <img src="img/cssmyskill.png" alt="Sertifikat FrontEnd CSS" class="certificate-image">
+                    <div class="certificate-content">
+                        <h3>CSS</h3>
+                        <p class="certificate-issuer">MySkill</p>
+                        <p class="certificate-date">Lulus: Agustus 2024</p>
+                    </div>
+                </a>
+                <a href="https://storage.googleapis.com/myskill-v2-certificates/topic-DQ4WDIr2jXa70FUI477S/fZpJp5JC9WWsmeybN4pNHO1bOQf2-yc0VaL2UDihztuzEaLs1.pdf" target="_blank" class="certificate-item reveal-up">
+                    <img src="img/htmlmyskill.png" alt="Sertifikat FrontEnd HTML" class="certificate-image">
+                    <div class="certificate-content">
+                        <h3>HTML</h3>
+                        <p class="certificate-issuer">MySkill</p>
+                        <p class="certificate-date">Lulus: Agustus 2024</p>
+                    </div>
+                </a>
+                <a href="https://www.codepolitan.com/c/KV9LAKW/" target="_blank" class="certificate-item reveal-up">
+                    <img src="img/htmlcss.png" alt="Sertifikat FrontEnd HTML/CSS" class="certificate-image">
+                    <div class="certificate-content">
+                        <h3>HTML dan CSS</h3>
+                        <p class="certificate-issuer">CODEPOLITAN</p>
+                        <p class="certificate-date">Lulus: Agustus 2024</p>
+                    </div>
+                </a>
+                <a href="https://www.codepolitan.com/c/C5ZBULI/" target="_blank" class="certificate-item reveal-up">
+                    <img src="img/js2.png" alt="Sertifikat FrontEnd JavaScript" class="certificate-image">
+                    <div class="certificate-content">
+                        <h3>JavaScript</h3>
+                        <p class="certificate-issuer">CODEPOLITAN</p>
+                        <p class="certificate-date">Lulus: Agustus 2024</p>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/file/d/1TMliTugVT9PjTOcFOLqsJT7qNFqcqg2D/view" target="_blank" class="certificate-item reveal-up">
+                    <img src="img/shortskillmyskill.png" alt="Sertifikat ShortClass" class="certificate-image">
+                    <div class="certificate-content">
+                        <h3>ShortClass FrontEnd</h3>
+                        <p class="certificate-issuer">MySkill</p>
+                        <p class="certificate-date">Desember 2024</p>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/file/d/1Wb2HwLz9sV_57G_meBh6qgGBqRyzg27q/view" target="_blank" class="certificate-item reveal-up">
+                    <img src="img/shotclassbackend.png" alt="Sertifikat ShortClass" class="certificate-image">
+                    <div class="certificate-content">
+                        <h3>ShortClass BackEnd</h3>
+                        <p class="certificate-issuer">MySkill</p>
+                        <p class="certificate-date">Oktober 2025</p>
+                    </div>
                 </a>
             </div>
-            
-            <a href="#projects" class="cta-button">Lihat Karya Saya</a>
-        </div>
-    </section>
+        </section>
 
-    <section id="about" class="container"> 
-        <h2 class="section-title">Tentang Saya</h2>
-        <div class="about-container">
-            <div class="about-image">
-                <img src="img/profile.jpg" alt="Foto Profil Putra Firdaus Ramandani">
-            </div>
-            
-            <div class="about-text">
-                <h3>Perjalanan dan Keahlian Saya</h3>
-                <p>Perjalanan saya di dunia coding dimulai sejak duduk di bangku SMK kelas 11. Jujur saja, awalnya saya tertarik karena terlihat keren! Namun, semakin dalam saya menyelami baris demi baris kode, saya menyadari satu hal penting: pemrograman adalah jantung dari transformasi digital.</p>
-                <p>Sejak saat itu, rasa ingin tahu saya tidak terbendung. Saya belajar siang dan malam melalui berbagai kursus dan tutorial. Kerja keras tersebut membuahkan hasil melalui beberapa proyek pribadi dan kesempatan bekerja secara profesional sebagai programmer. Saya percaya bahwa dengan logika dan kreativitas, tidak ada masalah yang tidak bisa diselesaikan.</p>
-                
-                <div class="personal-info-grid">
-                    <div class="info-card">
-                        <i class="fa-solid fa-calendar-days"></i>
-                        <div>
-                            <strong>Umur</strong>
-                            <span>20 Tahun</span>
-                        </div>
+        <!-- ==================== PROJECTS SECTION ==================== -->
+        <section id="projects" class="container">
+            <div class="section-number" aria-hidden="true">04</div>
+            <h2 class="section-title reveal-up">Project</h2>
+            <div class="project-grid">
+                <div class="project-item reveal-up">
+                    <div class="project-image-container">
+                        <img src="img/kenzomovie.png" alt="KenzoMovie">
                     </div>
-                    <div class="info-card">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <div>
-                            <strong>Tempat Lahir</strong>
-                            <span>Semarang</span>
-                        </div>
-                    </div>
-                    <div class="info-card">
-                        <i class="fa-solid fa-school"></i>
-                        <div>
-                            <strong>Sekolah</strong>
-                            <span>SMKN 11 Semarang</span>
-                        </div>
-                    </div>
-                    <div class="info-card">
-                        <i class="fa-solid fa-table-tennis-paddle-ball"></i>
-                        <div>
-                            <strong>Hobi</strong>
-                            <span>Bulu Tangkis</span>
-                        </div>
-                    </div>
-                    <div class="info-card">
-                        <i class="fa-solid fa-phone"></i>
-                        <div>
-                            <strong>Kontak</strong>
-                            <span>081225208437</span>
+                    <div class="project-content">
+                        <h3>Kenzo Movie</h3>
+                        <p class="project-description">KenzoMovie merupakan platform online yang menyediakan informasi lengkap mengenai film populer, terbaru dan trending secara real time.</p>
+                        <p class="project-tech"><strong>Teknologi:</strong> HTML, CSS, JavaScript</p>
+                        <div class="project-links">
+                            <a href="https://kenzomovie.vercel.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>Lihat Website</a>
+                            <a href="https://github.com/PutraFirdausR/movie-web-app" target="_blank"><i class="fa-brands fa-github"></i>Lihat Repo</a>
                         </div>
                     </div>
                 </div>
-
-                <h4>Keahlian Utama:</h4>
-                <ul class="skills-list">
-                    <li><i class="fa-brands fa-html5"></i> HTML5 & CSS3</li>
-                    <li><i class="fa-brands fa-js"></i> JavaScript (ES6+)</li>
-                    <li><i class="fa-solid fa-wind"></i> Tailwind</li>
-                    <li><i class="fa-brands fa-python"></i> Python</li>
-                    <li><i class="fa-brands fa-vuejs"></i> Vue</li>
-                    <li><i class="fa-brands fa-php"></i> PHP</li>
-                    <li><i class="fa-solid fa-database"></i> MySQL</li>                    
-                    <li><i class="fa-brands fa-sass"></i> Sass</li>
-                    <li><i class="fa-brands fa-git-alt"></i> Git & Github</li>                
-                    <li><i class="fa-brands fa-figma"></i> UI/UX & Desain</li>                
-                </ul>
-            </div>
-        </div>
-    </section> 
-
-    <section id="experience" class="container">
-        <div class="table-container" style="overflow-x: auto;">
-            <h3 style="color: #0062cc; font-size: 1.5rem; margin-bottom: 20px; font-weight: 700;">Rincian Pengalaman & Kolaborasi</h3>
-            
-            <table class="profile-table">
-                <thead>
-                    <tr>
-                        <th>Kategori</th>
-                        <th>Detail Kompetensi / Proyek</th>
-                        <th>Keterangan Tambahan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Keterampilan Teknis</strong></td>
-                        <td>Vue.js, Tailwind, JavaScript, PHP, MySQL</td>
-                        <td>Berfokus pada pengembangan Front-End yang dinamis, responsif, serta integrasi sistem Back-End sederhana.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Pengalaman Freelance</strong></td>
-                        <td>Proyek Omabling & Company Profile Unsoed FH</td>
-                        <td>Membangun antarmuka interaktif dan menyediakan fitur-fitur yang disesuaikan dengan kebutuhan instansi.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Kolaborasi Tim</strong></td>
-                        <td>Website Unsoed FH</td>
-                        <td>Bekerja sama dengan tim developer lain untuk membagi tugas pengembangan fitur dan memastikan sistem berjalan lancar sesuai tenggat waktu.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Mini Projects (Mandiri)</strong></td>
-                        <td>Kenzo Movie, Firdaus Residence, Calculator, Portofolio</td>
-                        <td>Eksplorasi penggunaan API eksternal, pembuatan kalkulator logis, serta penggunaan library animasi seperti GSAP & AOS.</td>
-                    </tr>
-                    <tr>
-                       <td><strong>Desain Grafis & Social Media Marketing</strong></td>
-                       <td>Desain Cetak (Banner, Poster, Sampul Buku), Konten Instagram, Monthly SMM Report</td>
-                       <td>Merancang kalender konten untuk 30 hari, membuat desain visual, serta menyusun laporan media sosial bulanan. <a href="https://drive.google.com/drive/folders/1MHN7zTQXSPaso-3Y8RB94wxVHsXQonJa" target="_blank">Lihat Desain</a>.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section id="certificate" class="container">
-        <h2 class="section-title">Sertifikat</h2>
-        <div class="certificate-flex"> 
-            <a href="https://storage.googleapis.com/myskill-v2-certificates/topic-ZIWNpsfNZkE1B2rWr69H/fZpJp5JC9WWsmeybN4pNHO1bOQf2-dQ5VGAYi73bfAmIQLd4a.pdf" target="_blank" class="certificate-item">
-                <img src="img/vue.png" alt="Sertifikat Frontend Vue" class="certificate-image">
-                <div class="certificate-content">
-                    <h3>Frontend Vue</h3>
-                    <p class="certificate-issuer">MySkill</p>
-                    <p class="certificate-date">Lulus: October 2024</p>
+                <div class="project-item reveal-up">
+                    <div class="project-image-container">
+                        <img src="img/firdausresidence.png" alt="Firdaus Residence">
+                    </div>
+                    <div class="project-content">
+                        <h3>Firdaus Residence</h3>
+                        <p class="project-description">Web Properti yang khusus menyediakan informasi mengenai berbagai tipe villa dengan fasilitas lengkap, animasi GSAP & AOS.</p>
+                        <p class="project-tech"><strong>Alat:</strong> HTML, CSS, JS, GSAP, AOS</p>
+                        <div class="project-links">
+                            <a href="https://firdaus-residence.vercel.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>Lihat Website</a>
+                            <a href="https://github.com/PutraFirdausR/firdaus-residence" target="_blank"><i class="fa-brands fa-github"></i>Lihat Repo</a>
+                        </div>
+                    </div>
                 </div>
-            </a>
-            <a href="https://storage.googleapis.com/myskill-v2-certificates/topic-pTLX6J38RGSQ4dfEO6yQ/fZpJp5JC9WWsmeybN4pNHO1bOQf2-87s8vOHDPQbIr4JjiD7Q.pdf" target="_blank" class="certificate-item">
-                <img src="img/js.png" alt="Sertifikat FrontEnd JavaScript" class="certificate-image">
-                <div class="certificate-content">
-                    <h3>JavaScript</h3>
-                    <p class="certificate-issuer">MySkill</p>
-                    <p class="certificate-date">Lulus: August 2024</p>
+                <div class="project-item reveal-up">
+                    <div class="project-image-container">
+                        <img src="img/porto.png" alt="Portofolio Saya">
+                    </div>
+                    <div class="project-content">
+                        <h3>Portofolio</h3>
+                        <p class="project-description">Saya membangun portofolio web interaktif yang menggabungkan animasi dinamis dengan desain responsif menggunakan Vue.js.</p>
+                        <p class="project-tech"><strong>Teknologi:</strong> Vue, Tailwind, Daisy Ui, AOS</p>
+                        <div class="project-links">
+                            <a href="https://putrafirdaus-portofolio-v1.vercel.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>Lihat Website</a>
+                            <a href="https://github.com/PutraFirdausR/putrafirdaus-portofolio-v1" target="_blank"><i class="fa-brands fa-github"></i>Lihat Repo</a>
+                        </div>
+                    </div>
                 </div>
-            </a>
-               <a href="https://storage.googleapis.com/myskill-v2-certificates/course-GeueYoOAoIi58XZ0MWA9/fZpJp5JC9WWsmeybN4pNHO1bOQf2-W2IiY0dRHD3zkJCgX85X.pdf" target="_blank" class="certificate-item">
-                <img src="img/cssmyskill.png" alt="Sertifikat FrontEnd HTML" class="certificate-image">
-                <div class="certificate-content">
-                    <h3>CSS</h3>
-                    <p class="certificate-issuer">MySkill</p>
-                    <p class="certificate-date">Lulus: Agustus 2024</p>
+                <div class="project-item reveal-up">
+                    <div class="project-image-container">
+                        <img src="img/omabling.png" alt="Omabling">
+                    </div>
+                    <div class="project-content">
+                        <h3>Omabling</h3>
+                        <p class="project-description">Website ini adalah karya freelance pertama saya dikembangkan menggunakan Vue.js untuk antarmuka yang dinamis dan interaktif.</p>
+                        <p class="project-tech"><strong>Teknologi:</strong> Vue, Tailwind, Daisy UI</p>
+                        <div class="project-links">
+                            <a href="https://omabling.vercel.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>Lihat Website</a>
+                            <a href="https://github.com/PutraFirdausR/omabling" target="_blank"><i class="fa-brands fa-github"></i>Lihat Repo</a>
+                        </div>
+                    </div>
                 </div>
-            </a>
-            <a href="https://storage.googleapis.com/myskill-v2-certificates/topic-DQ4WDIr2jXa70FUI477S/fZpJp5JC9WWsmeybN4pNHO1bOQf2-yc0VaL2UDihztuzEaLs1.pdf" target="_blank" class="certificate-item">
-                <img src="img/htmlmyskill.png" alt="Sertifikat FrontEnd HTML" class="certificate-image">
-                <div class="certificate-content">
-                    <h3>HTML</h3>
-                    <p class="certificate-issuer">MySkill</p>
-                    <p class="certificate-date">Lulus: Agustus 2024</p>
+                <div class="project-item reveal-up">
+                    <div class="project-image-container">
+                        <img src="img/calculator.png" alt="Calculator">
+                    </div>
+                    <div class="project-content">
+                        <h3>Calculator</h3>
+                        <p class="project-description">Aplikasi kalkulator berbasis web fungsional yang mendukung berbagai operasi matematika dasar, penghapusan, dan persentase.</p>
+                        <p class="project-tech"><strong>Teknologi:</strong> HTML, CSS, JavaScript</p>
+                        <div class="project-links">
+                            <a href="https://calculator-teal-xi.vercel.app/" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>Lihat Website</a>
+                            <a href="https://github.com/PutraFirdausR/calculator" target="_blank"><i class="fa-brands fa-github"></i>Lihat Repo</a>
+                        </div>
+                    </div>
                 </div>
-            </a>
-            <a href="https://www.codepolitan.com/c/KV9LAKW/" target="_blank" class="certificate-item">
-                <img src="img/htmlcss.png" alt="Sertifikat FrontEnd HTML/CSS" class="certificate-image">
-                <div class="certificate-content">
-                    <h3>HTML dan CSS</h3>
-                    <p class="certificate-issuer">CODEPOLITAN</p>
-                    <p class="certificate-date">Lulus: Agustus 2024</p>
-                </div>
-            </a>
-            <a href="https://www.codepolitan.com/c/C5ZBULI/" target="_blank" class="certificate-item">
-                <img src="img/js2.png" alt="Sertifikat FrontEnd JavaScript" class="certificate-image">
-                <div class="certificate-content">
-                    <h3>JavaScript</h3>
-                    <p class="certificate-issuer">CODEPOLITAN</p>
-                    <p class="certificate-date">Lulus: Agustus 2024</p>
-                </div>
-            </a>
-            <a href="https://drive.google.com/file/d/1TMliTugVT9PjTOcFOLqsJT7qNFqcqg2D/view" target="_blank" class="certificate-item">
-                <img src="img/shortskillmyskill.png" alt="Sertifikat ShortClass" class="certificate-image">
-                <div class="certificate-content">
-                    <h3>ShortClass FrontEnd</h3>
-                    <p class="certificate-issuer">MySkill</p>
-                    <p class="certificate-date">Desember 2024</p>
-                </div>
-            </a>
-            <a href="https://drive.google.com/file/d/1Wb2HwLz9sV_57G_meBh6qgGBqRyzg27q/view" target="_blank" class="certificate-item">
-                <img src="img/shotclassbackend.png" alt="Sertifikat ShortClass" class="certificate-image">
-                <div class="certificate-content">
-                    <h3>ShortClass BackEnd</h3>
-                    <p class="certificate-issuer">MySkill</p>
-                    <p class="certificate-date">Oktober 2025</p>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <section id="projects" class="container"> 
-        <h2 class="section-title">Project</h2>
-        <div class="project-grid">
-            <div class="project-item">
-                <div class="project-image-container">
-                    <img src="img/kenzomovie.png" alt="KenzoMovie">
-                </div>
-                <div class="project-content">
-                    <h3>Kenzo Movie</h3>
-                    <p class="project-description">KenzoMovie merupakan platform online yang menyediakan informasi lengkap mengenai film populer, terbaru dan trending secara real time.</p>
-                    <p class="project-tech"><strong>Teknologi:</strong> HTML, CSS, JavaScript</p>
-                    <div class="project-links">
-                        <a href="https://kenzomovie.vercel.app/" target="_blank">Lihat Website</a>
-                        <a href="https://github.com/PutraFirdausR/movie-web-app" target="_blank">Lihat Repo</a>
+                <div class="project-item reveal-up">
+                    <div class="project-image-container">
+                        <img src="img/unsoedfh.png" alt="Unsoed FH">
+                    </div>
+                    <div class="project-content">
+                        <h3>Unsoed FH</h3>
+                        <p class="project-description">Website freelance untuk memenuhi kebutuhan company profile Universitas Jendral Soedirman Fakultas Hukum bersama tim.</p>
+                        <p class="project-tech"><strong>Teknologi:</strong> PHP, MySQL, Tailwind, AOS</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank"><i class="fa-solid fa-clock"></i>Lihat Website (Soon)</a>
+                            <a href="https://github.com/PutraFirdausR/unsoed_profile" target="_blank"><i class="fa-brands fa-github"></i>Lihat Repo</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="project-item">
-                <div class="project-image-container">
-                    <img src="img/firdausresidence.png" alt="Firdaus Residence">
-                </div>
-                <div class="project-content">
-                    <h3>Firdaus Residence</h3>
-                    <p class="project-description">Web Properti yang khusus menyediakan informasi mengenai berbagai tipe villa dengan fasilitas lengkap, animasi GSAP & AOS.</p>
-                    <p class="project-tech"><strong>Alat:</strong> HTML, CSS, JS, GSAP, AOS</p>
-                    <div class="project-links">
-                        <a href="https://firdaus-residence.vercel.app/" target="_blank">Lihat Website</a>
-                        <a href="https://github.com/PutraFirdausR/firdaus-residence" target="_blank">Lihat Repo</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-item">
-                <div class="project-image-container">
-                    <img src="img/porto.png" alt="Portofolio Saya">
-                </div>
-                <div class="project-content">
-                    <h3>Portofolio</h3>
-                    <p class="project-description">Saya membangun portofolio web interaktif yang menggabungkan animasi dinamis dengan desain responsif menggunakan Vue.js.</p>
-                    <p class="project-tech"><strong>Teknologi:</strong> Vue, Tailwind, Daisy Ui, AOS</p>
-                    <div class="project-links">
-                        <a href="https://putrafirdaus-portofolio-v1.vercel.app/" target="_blank">Lihat Website</a>
-                        <a href="https://github.com/PutraFirdausR/putrafirdaus-portofolio-v1" target="_blank">Lihat Repo</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-item">
-                <div class="project-image-container">
-                    <img src="img/omabling.png" alt="Omabling">
-                </div>
-                <div class="project-content">
-                    <h3>Omabling</h3>
-                    <p class="project-description">Website ini adalah karya freelance pertama saya dikembangkan menggunakan Vue.js untuk antarmuka yang dinamis dan interaktif.</p>
-                    <p class="project-tech"><strong>Teknologi:</strong> Vue, Tailwind, Daisy UI</p>
-                    <div class="project-links">
-                        <a href="https://omabling.vercel.app/" target="_blank">Lihat Website</a>
-                        <a href="https://github.com/PutraFirdausR/omabling" target="_blank">Lihat Repo</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-item">
-                <div class="project-image-container">
-                    <img src="img/calculator.png" alt="Calculator">
-                </div>
-                <div class="project-content">
-                    <h3>Calculator</h3>
-                    <p class="project-description">Aplikasi kalkulator berbasis web fungsional yang mendukung berbagai operasi matematika dasar, penghapusan, dan persentase.</p>
-                    <p class="project-tech"><strong>Teknologi:</strong> HTML, CSS, JavaScript</p>
-                    <div class="project-links">
-                        <a href="https://calculator-teal-xi.vercel.app/" target="_blank">Lihat Website</a>
-                        <a href="https://github.com/PutraFirdausR/calculator" target="_blank">Lihat Repo</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-item">
-                <div class="project-image-container">
-                    <img src="img/unsoedfh.png" alt="Unsoed FH">
-                </div>
-                <div class="project-content">
-                    <h3>Unsoed FH</h3>
-                    <p class="project-description">Website freelance untuk memenuhi kebutuhan company profile Universitas Jendral Soedirman Fakultas Hukum bersama tim.</p>
-                    <p class="project-tech"><strong>Teknologi:</strong> PHP, MySQL, Tailwind, AOS</p>
-                    <div class="project-links">
-                        <a href="#" target="_blank">Lihat Website (Soon)</a>
-                        <a href="https://github.com/PutraFirdausR/unsoed_profile" target="_blank">Lihat Repo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact" class="container">
-        <h2 class="section-title">Hubungi Saya</h2>
-        <div class="contact-form-container">
-            <p style="text-align: center; color: #6c757d; margin-bottom: 30px;">Mari berkolaborasi! Jangan ragu untuk mengirimkan pesan atau pertanyaan kepada saya.</p>
-            <form action="mailto:putrafirdaus6373@gmail.com" method="POST" enctype="text/plain" class="profile-form" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Nama Lengkap</label>
-                    <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Alamat Email</label>
-                    <input type="email" id="email" name="email" placeholder="contoh@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Pesan / Penawaran Kolaborasi</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Tuliskan detail pesan Anda di sini..." required></textarea>
-                </div>
-                <button type="button" class="cta-button" style="width: 100%; border: none; cursor: pointer;" onclick="tampilkanAlert()">Kirim Pesan <i class="fa-solid fa-paper-plane" style="margin-left: 8px;"></i></button>
-            </form>
-        </div>
-        
-        <div id="customAlert" class="custom-alert-overlay">
-            <div class="custom-alert-box">
-                <div class="alert-icon">
-                    <i class="fa-solid fa-circle-check"></i>
-                </div>
-                <h3>Berhasil!</h3>
-                <p>Pesan kamu sudah terkirim.</p>
-                <button onclick="tutupAlert()" class="alert-close-btn">Tutup</button>
-            </div>
-        </div>
-    </section>
-</main>
-
-<footer>
-    <div class="container footer-container">
-        <div class="footer-info">
-            <h3>Putra<span>Firdaus.</span></h3>
-            <p class="footer-desc">Berdedikasi untuk terus berkembang dalam menciptakan antarmuka web yang interaktif dan pengalaman pengguna yang luar biasa.</p>
-            
-            <div class="footer-contact-list">
-                <p><i class="fa-solid fa-envelope"></i> <a href="mailto:putrafirdaus6373@gmail.com">putrafirdaus6373@gmail.com</a></p>
-                <p><i class="fa-solid fa-location-dot"></i> Semarang, Banyumanik</p>
+        <!-- ==================== CONTACT SECTION ==================== -->
+        <section id="contact" class="container">
+            <div class="section-number" aria-hidden="true">05</div>
+            <h2 class="section-title reveal-up">Hubungi Saya</h2>
+            <div class="contact-form-container reveal-up">
+                <p class="contact-subtitle">Mari berkolaborasi! Jangan ragu untuk mengirimkan pesan atau pertanyaan kepada saya.</p>
+                <form action="mailto:putrafirdaus6373@gmail.com" method="POST" enctype="text/plain" class="profile-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Alamat Email</label>
+                        <input type="email" id="email" name="email" placeholder="contoh@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Pesan / Penawaran Kolaborasi</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tuliskan detail pesan Anda di sini..." required></textarea>
+                    </div>
+                    <button type="button" class="cta-button contact-submit-btn" onclick="tampilkanAlert()">
+                        <span>Kirim Pesan</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
             </div>
 
-            <div class="footer-social-links">
-                <a href="https://www.linkedin.com/in/putra-firdaus-ramandani-1b3a5327b/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/PutraFirdausR" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.instagram.com/meputtra/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <!-- Custom Alert Popup -->
+            <div id="customAlert" class="custom-alert-overlay">
+                <div class="custom-alert-box">
+                    <div class="alert-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h3>Berhasil!</h3>
+                    <p>Pesan kamu sudah terkirim.</p>
+                    <button onclick="tutupAlert()" class="alert-close-btn">Tutup</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-info">
+                <h3>Putra<span>Firdaus.</span></h3>
+                <p class="footer-desc">Berdedikasi untuk terus berkembang dalam menciptakan antarmuka web yang interaktif dan pengalaman pengguna yang luar biasa.</p>
+                <div class="footer-contact-list">
+                    <p><i class="fa-solid fa-envelope"></i> <a href="mailto:putrafirdaus6373@gmail.com">putrafirdaus6373@gmail.com</a></p>
+                    <p><i class="fa-solid fa-location-dot"></i> Semarang, Banyumanik</p>
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://www.linkedin.com/in/putra-firdaus-ramandani-1b3a5327b/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/PutraFirdausR" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/meputtra/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-thanks">
+                <h4>Apresiasi & Terima Kasih</h4>
+                <p>Web Programming UNPAS, Programming Zaman Now, dan teman-teman IMPHNEN (Ingin Menjadi Programmer Handal Namun Enggan Ngoding).</p>
+                <p>Yang selalu menemani setiap penulisan baris kode karena telah membantu dalam diskusi yang saya tanyakan dan ajaran yang telah diberikan kepada saya.</p>
             </div>
         </div>
-
-        <div class="footer-thanks">
-            <h4>Apresiasi & Terima Kasih</h4>
-            <p>Web Programming UNPAS, Programming Zaman Now, dan teman-teman IMPHNEN (Ingin Menjadi Programmer Handal Namun Enggan Ngoding).</p>
-            <p>Yang selalu menemani setiap penulisan baris kode karena telah membantu dalam diskusi yang saya tanyakan dan ajaran yang telah diberikan kepada saya.</p>
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> Putra Firdaus Ramandani. Dirancang dan dikembangkan untuk memenuhi tugas mata kuliah.</p>
         </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" title="Kembali ke Atas">
+        <i class="fa-solid fa-arrow-up"></i>
     </div>
 
-    <div class="footer-bottom">
-        <p>&copy; <span id="currentYear"></span> Putra Firdaus Ramandani. Dirancang dan dikembangkan untuk memenuhi tugas mata kuliah.</p>
-    </div>
-</footer>
+    <!-- Cursor Showcase (Portfolio Hover Effect) -->
+    <div id="cursorShowcase"></div>
 
-<div class="scroll-to-top" title="Kembali ke atas" aria-label="Kembali ke atas">&uarr;</div>
-
-<div id="cursorShowcase"></div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
