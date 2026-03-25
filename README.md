@@ -1,89 +1,62 @@
-<h1 align="center">🌐 Tugas Portofolio</h1>
+<div align="center">
 
-<p align="center">
-Website portofolio sederhana untuk menampilkan profil, skill, dan project.
+  <h1>✨ Personal Portfolio Website</h1>
+  <p><strong>A clean, interactive, and responsive showcase of my development journey.</strong></p>
+
+  <a href="https://my-porto-gamma-six.vercel.app">
+    <img src="https://img.shields.io/badge/Live_Demo-View_Website-success?style=for-the-badge&logo=vercel" alt="Live Demo" />
+  </a>
+
+  <br><br>
+
+  <img src="https://img.shields.io/github/stars/PutraFirdausR/tugas-porto?style=flat-square&color=yellow&label=Stars" alt="Stars" />
+  <img src="https://img.shields.io/github/forks/PutraFirdausR/tugas-porto?style=flat-square&color=blue&label=Forks" alt="Forks" />
+  <img src="https://img.shields.io/github/license/PutraFirdausR/tugas-porto?style=flat-square&color=green&label=License" alt="License" />
+
+</div>
+
+<hr />
+
+## 🧑‍💻 About The Project
+
+This project is a simple yet elegant personal portfolio website created to showcase my profile, technical skills, and past projects. 
+
+The main objectives of building this portfolio are:
+- To practice and enhance my core web development skills.
+- To implement standard version control practices using **Git** and **GitHub**.
+- To build a solid online presence and present my work professionally to visitors and potential clients.
+
+## ✨ Key Features
+
+What makes this portfolio stand out:
+- 📱 **Fully Responsive:** Adapts seamlessly to mobile, tablet, and desktop screens.
+- 👨‍💻 **About Section:** A brief introduction to who I am and my background.
+- 💼 **Portfolio Showcase:** A curated gallery of my projects and experiments.
+- 📬 **Contact Form:** An easy way for visitors to reach out.
+- 🎨 **Clean UI/UX:** A minimalist and modern interface.
+
+---
+
+## ⚙️ Tech Stack
+
+This project was built from scratch using foundational web technologies:
+
+<p align="left">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/github/stars/PutraFirdausR/tugas-porto?style=social">
-  <img src="https://img.shields.io/github/forks/PutraFirdausR/tugas-porto?style=social">
-  <img src="https://img.shields.io/github/license/PutraFirdausR/tugas-porto">
-</p>
+## 📂 Project Structure
 
----
+A clean and straightforward directory setup:
 
-# 🧑‍💻 About The Project
-
-Project ini merupakan website portofolio sederhana yang dibuat untuk menampilkan informasi tentang diri, skill, serta project yang pernah dibuat.
-
-Tujuan dari project ini adalah:
-
-- Melatih kemampuan membuat website
-- Menggunakan Git dan GitHub untuk version control
-- Menyusun portofolio project
-
----
-
-# ⚙️ Tech Stack
-
-Project ini dibuat menggunakan teknologi berikut:
-
-- HTML
-- CSS
-- JavaScript
-- Git
-- GitHub
-
----
-
-# ✨ Features
-
-Beberapa fitur yang terdapat dalam project ini:
-
-- Responsive design
-- About section
-- Portfolio section
-- Contact section
-- Simple and clean UI
-
----
-
-# 📂 Project Structure
-
-tugas-porto
-```plaintext
+```text
+tugas-porto/
 │
-├── index.html
-├── style.css
-├── script.js
-├── img
-└── README.md
+├── img/             # Directory for images and assets
+├── index.html       # Main HTML structure
+├── style.css        # Custom CSS styling
+├── script.js        # JavaScript logic and interactivity
+└── README.md        # Project documentation
 ```
-
----
-
-# 🛠️ Installation
-```bash
-git clone https://github.com/PutraFirdausR/tugas-porto.git
-```
-
-Masuk ke folder project
-```bash
-cd tugas-porto
-```
-
-
-Buka file `index.html` di browser.
-
----
-
-# 👤 Author
-
-**Putra Firdaus**
-
-GitHub  
-https://github.com/PutraFirdausR
-
----
-
-⭐ Jika project ini membantu, jangan lupa beri **star** pada repository ini.
