@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', function () {
+// Memastikan semua elemen HTML diload sebelum script dijalankan (Pengganti DOMContentLoaded)
+$(document).ready(function () {
+    
     // Daftarkan plugin GSAP
     if (typeof gsap !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
@@ -14,9 +16,9 @@ document.addEventListener('DOMContentLoaded', function () {
         .call(typeEffect); // Panggil fungsi ngetik setelah animasi hero muncul
 
         /* --------------------------------------------------
-           ADVANCED TYPING EFFECT (CINEMATIC)
+           ADVANCED TYPING EFFECT (CINEMATIC) DENGAN JQUERY
         -------------------------------------------------- */
-        const dynamicText = document.querySelector('.dynamic-text');
+        const $dynamicText = $('.dynamic-text'); // Selector jQuery
         const phrases = [
             "Lets Connect With me!", 
             "Hey, I'm Putra Firdaus", 
@@ -29,7 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
         let isDeleting = false;
 
         function typeEffect() {
-            if (!dynamicText) return;
+            // Cek apakah elemen ada
+            if (!$dynamicText.length) return;
 
             const currentPhrase = phrases[phraseIndex];
             
@@ -41,7 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 letterIndex++;
             }
 
-            dynamicText.textContent = currentText;
+            // Memasukkan teks ke HTML menggunakan fungsi text() dari jQuery
+            $dynamicText.text(currentText);
 
             let typeSpeed = 100; 
             if (isDeleting) typeSpeed /= 2;
@@ -59,34 +63,31 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         /* --------------------------------------------------
-           GLOBAL CUSTOM CURSOR (GSAP)
+           GLOBAL CUSTOM CURSOR (JQUERY + GSAP)
         -------------------------------------------------- */
-        const cursorDot = document.querySelector('.custom-cursor-dot');
-        const cursorOutline = document.querySelector('.custom-cursor-outline');
+        const $cursorDot = $('.custom-cursor-dot');
+        const $cursorOutline = $('.custom-cursor-outline');
 
-        if(window.innerWidth > 768) {
-            window.addEventListener('mousemove', (e) => {
-                gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.1 });
-                gsap.to(cursorOutline, { x: e.clientX, y: e.clientY, duration: 0.5 });
+        // Pengecekan lebar layar menggunakan jQuery
+        if($(window).width() > 768) {
+            $(window).on('mousemove', function(e) {
+                gsap.to($cursorDot[0], { x: e.clientX, y: e.clientY, duration: 0.1 });
+                gsap.to($cursorOutline[0], { x: e.clientX, y: e.clientY, duration: 0.5 });
             });
 
             // Hover state warna Hijau Neon
-            const hoverElements = document.querySelectorAll('a, button, input, textarea, .detail-pill, .certificate-item, .btn-submit');
-            hoverElements.forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    gsap.to(cursorOutline, { scale: 1.5, borderColor: "rgba(34, 197, 94, 1)", backgroundColor: "rgba(34, 197, 94, 0.1)", duration: 0.2 });
-                });
-                el.addEventListener('mouseleave', () => {
-                    gsap.to(cursorOutline, { scale: 1, borderColor: "rgba(34, 197, 94, 0.5)", backgroundColor: "transparent", duration: 0.2 });
-                });
+            $('a, button, input, textarea, .detail-pill, .certificate-item, .btn-submit').on('mouseenter', function() {
+                gsap.to($cursorOutline[0], { scale: 1.5, borderColor: "rgba(34, 197, 94, 1)", backgroundColor: "rgba(34, 197, 94, 0.1)", duration: 0.2 });
+            }).on('mouseleave', function() {
+                gsap.to($cursorOutline[0], { scale: 1, borderColor: "rgba(34, 197, 94, 0.5)", backgroundColor: "transparent", duration: 0.2 });
             });
         }
 
         /* --------------------------------------------------
            GSAP SCROLLTRIGGER (REVEAL ANIMATIONS)
         -------------------------------------------------- */
-        gsap.utils.toArray('.reveal-up').forEach(elem => {
-            gsap.fromTo(elem, { y: 60, autoAlpha: 0 }, { scrollTrigger: { trigger: elem, start: "top 85%" }, y: 0, autoAlpha: 1, duration: 1, ease: "power3.out" });
+        $('.reveal-up').each(function() {
+            gsap.fromTo(this, { y: 60, autoAlpha: 0 }, { scrollTrigger: { trigger: this, start: "top 85%" }, y: 0, autoAlpha: 1, duration: 1, ease: "power3.out" });
         });
         
         gsap.fromTo(".gsap-stagger-table", 
@@ -103,187 +104,178 @@ document.addEventListener('DOMContentLoaded', function () {
         );
 
         /* --------------------------------------------------
-           BENTO BOX FLOATING ICONS
+           BENTO BOX FLOATING ICONS (JQUERY EACH)
         -------------------------------------------------- */
-        const icons = document.querySelectorAll('.float-icon');
-        icons.forEach((icon, index) => {
-            gsap.to(icon, {
+        $('.float-icon').each(function(index) {
+            gsap.to(this, {
                 y: "random(-15, 15)", x: "random(-15, 15)", rotation: "random(-10, 10)",
                 duration: "random(2, 4)", repeat: -1, yoyo: true, ease: "sine.inOut", delay: index * 0.5
             });
         });
 
         /* --------------------------------------------------
-           MAGNETIC BUTTON EFFECT
+           MAGNETIC BUTTON EFFECT (JQUERY ON)
         -------------------------------------------------- */
-        const magneticBtns = document.querySelectorAll('.magnetic-btn');
-        magneticBtns.forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
-                const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
-                gsap.to(btn, { x: x, y: y, duration: 0.3, ease: "power2.out" });
-            });
-            btn.addEventListener('mouseleave', () => {
-                gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
-            });
+        $('.magnetic-btn').on('mousemove', function(e) {
+            const rect = this.getBoundingClientRect(); // Menggunakan fungsi asli DOM untuk presisi
+            const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
+            const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
+            gsap.to(this, { x: x, y: y, duration: 0.3, ease: "power2.out" });
+        }).on('mouseleave', function() {
+            gsap.to(this, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
         });
     }
 
     /* --------------------------------------------------
-       HEADER & NAV SCROLL LOGIC
+       HEADER & NAV SCROLL LOGIC (FULL JQUERY)
     -------------------------------------------------- */
-    const header = document.getElementById('header');
-    const scrollProgressBar = document.getElementById('scrollProgressBar');
-    const scrollToTopBtn = document.querySelector('.scroll-to-top');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('main section');
+    const $header = $('#header');
+    const $scrollProgressBar = $('#scrollProgressBar');
+    const $scrollToTopBtn = $('.scroll-to-top');
 
-    window.addEventListener('scroll', function () {
-        const scrollTop  = window.pageYOffset;
-        const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
-        const progress   = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        if (scrollProgressBar) scrollProgressBar.style.width = progress + '%';
+    $(window).on('scroll', function () {
+        const scrollTop = $(this).scrollTop();
+        const docHeight = $(document).height() - $(window).height();
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        
+        // Atur lebar scrollbar
+        $scrollProgressBar.css('width', progress + '%');
 
-        if (header) header.classList.toggle('scrolled', window.scrollY > 30);
+        // Toggle shadow di header
+        $header.toggleClass('scrolled', scrollTop > 30);
 
-        if (scrollToTopBtn) {
-            if (window.pageYOffset > 200) {
-                if (scrollToTopBtn.style.display !== 'flex') {
-                    scrollToTopBtn.style.display = 'flex';
-                    if (typeof gsap !== 'undefined') gsap.to(scrollToTopBtn, { autoAlpha: 1, duration: 0.3 });
-                }
-            } else {
-                if (typeof gsap !== 'undefined') {
-                    gsap.to(scrollToTopBtn, { autoAlpha: 0, duration: 0.3, onComplete: () => { scrollToTopBtn.style.display = 'none'; } });
-                }
+        // Tombol Scroll ke atas
+        if (scrollTop > 200) {
+            if ($scrollToTopBtn.css('display') !== 'flex') {
+                $scrollToTopBtn.css('display', 'flex');
+                if (typeof gsap !== 'undefined') gsap.to($scrollToTopBtn[0], { autoAlpha: 1, duration: 0.3 });
+            }
+        } else {
+            if (typeof gsap !== 'undefined') {
+                gsap.to($scrollToTopBtn[0], { autoAlpha: 0, duration: 0.3, onComplete: () => { $scrollToTopBtn.css('display', 'none'); } });
             }
         }
 
+        // Active State di Navbar
         let currentSectionId = '';
-        sections.forEach(section => {
-            if (window.pageYOffset >= (section.offsetTop - 150)) {
-                currentSectionId = section.getAttribute('id');
+        $('main section').each(function() {
+            if (scrollTop >= ($(this).offset().top - 150)) {
+                currentSectionId = $(this).attr('id');
             }
         });
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSectionId}`) { link.classList.add('active'); }
-        });
-        if (sections.length > 0 && window.pageYOffset < sections[0].offsetTop - 100) {
-            navLinks.forEach(link => link.classList.remove('active'));
-            const homeNav = document.querySelector('nav ul li a[href="#hero"]');
-            if(homeNav) homeNav.classList.add('active');
+
+        $('.nav-link').removeClass('active');
+        if (currentSectionId) {
+            $('.nav-link[href="#' + currentSectionId + '"]').addClass('active');
+        }
+
+        // Paksa Menu Home Aktif saat di paling atas
+        if ($('main section').length > 0 && scrollTop < $('main section').first().offset().top - 100) {
+            $('.nav-link').removeClass('active');
+            $('nav ul li a[href="#hero"]').addClass('active');
         }
     });
 
     /* --------------------------------------------------
-       MOBILE MENU TOGGLE
+       MOBILE MENU TOGGLE (JQUERY)
     -------------------------------------------------- */
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinksContainer = document.querySelector('nav ul.nav-links');
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function () {
-            const isOpen = navLinksContainer && navLinksContainer.classList.toggle('active');
-            this.classList.toggle('open', isOpen);
-            document.body.style.overflow = isOpen ? 'hidden' : '';
-        });
-    }
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            if (navLinksContainer && navLinksContainer.classList.contains('active')) {
-                navLinksContainer.classList.remove('active');
-                if (menuToggle) menuToggle.classList.remove('open');
-                document.body.style.overflow = '';
-            }
-        });
+    $('.menu-toggle').on('click', function () {
+        $('.nav-links').toggleClass('active');
+        $(this).toggleClass('open');
+        $('body').css('overflow', $('.nav-links').hasClass('active') ? 'hidden' : '');
     });
 
-    const currentYearSpan = document.getElementById('currentYear');
-    if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
+    $('.nav-link').on('click', function () {
+        $('.nav-links').removeClass('active');
+        $('.menu-toggle').removeClass('open');
+        $('body').css('overflow', '');
+    });
 
-    if (scrollToTopBtn) {
-        scrollToTopBtn.addEventListener('click', function () {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
+    // Menuliskan tahun berjalan otomatis ke footer
+    $('#currentYear').text(new Date().getFullYear());
+
+    // Scroll To Top Saat di-klik
+    $scrollToTopBtn.on('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     /* --------------------------------------------------
-       CURSOR SHOWCASE (Portfolio Hover)
+       CURSOR SHOWCASE (PORTFOLIO HOVER - JQUERY)
     -------------------------------------------------- */
-    const cursorShowcase = document.getElementById('cursorShowcase');
-    const projectItems   = document.querySelectorAll('.project-item');
-    const cursorDot = document.querySelector('.custom-cursor-dot');
-    const cursorOutline = document.querySelector('.custom-cursor-outline');
+    const $cursorShowcase = $('#cursorShowcase');
 
-    document.addEventListener('mousemove', e => {
-        if (cursorShowcase && window.innerWidth > 768) {
-            cursorShowcase.style.setProperty('--x', e.clientX + 'px');
-            cursorShowcase.style.setProperty('--y', e.clientY + 'px');
+    $(document).on('mousemove', function(e) {
+        if ($cursorShowcase.length && $(window).width() > 768) {
+            $cursorShowcase.css({
+                '--x': e.clientX + 'px',
+                '--y': e.clientY + 'px'
+            });
         }
     });
 
-    projectItems.forEach(item => {
-        item.addEventListener('mouseenter', function () {
-            const img = this.querySelector('.project-image-container img');
-            if (img && cursorShowcase && window.innerWidth > 768) {
-                if (typeof gsap !== 'undefined') gsap.to([cursorDot, cursorOutline], { autoAlpha: 0, duration: 0.2 });
-                cursorShowcase.style.backgroundImage = `url(${img.src})`;
-                cursorShowcase.classList.add('visible');
-            }
-        });
-        item.addEventListener('mouseleave', function () {
-            if (cursorShowcase && window.innerWidth > 768) {
-                if (typeof gsap !== 'undefined') gsap.to([cursorDot, cursorOutline], { autoAlpha: 1, duration: 0.2 });
-                cursorShowcase.classList.remove('visible');
-            }
-        });
+    $('.project-item').on('mouseenter', function () {
+        const imgSrc = $(this).find('.project-image-container img').attr('src');
+        if (imgSrc && $cursorShowcase.length && $(window).width() > 768) {
+            if (typeof gsap !== 'undefined') gsap.to(['.custom-cursor-dot', '.custom-cursor-outline'], { autoAlpha: 0, duration: 0.2 });
+            $cursorShowcase.css('background-image', `url(${imgSrc})`).addClass('visible');
+        }
+    }).on('mouseleave', function () {
+        if ($cursorShowcase.length && $(window).width() > 768) {
+            if (typeof gsap !== 'undefined') gsap.to(['.custom-cursor-dot', '.custom-cursor-outline'], { autoAlpha: 1, duration: 0.2 });
+            $cursorShowcase.removeClass('visible');
+        }
     });
+
 }); 
 
 /* --------------------------------------------------
-   CUSTOM ALERT & COPY EMAIL FUNCTION
+   CUSTOM ALERT & COPY EMAIL FUNCTION (JQUERY)
 -------------------------------------------------- */
+// Fungsi-fungsi ini berada di luar $(document).ready agar bisa dipanggil dari atribut onclick="..." di HTML
+
 function tampilkanAlert() {
-    const form = document.getElementById('contactForm');
+    const form = $('#contactForm')[0];
     if (!form) return;
+
     if (form.checkValidity()) {
-        const alertBox = document.getElementById('customAlert');
-        if (alertBox) {
-            alertBox.querySelector('h3').textContent = "Berhasil!";
-            alertBox.querySelector('p').textContent = "Pesan kamu sudah terkirim.";
-            alertBox.classList.add('show');
+        const $alertBox = $('#customAlert');
+        if ($alertBox.length) {
+            $alertBox.find('h3').text("Berhasil!");
+            $alertBox.find('p').text("Pesan kamu sudah terkirim.");
+            $alertBox.addClass('show');
             if (typeof gsap !== 'undefined') {
-                gsap.fromTo(alertBox.querySelector('.custom-alert-box'), { scale: 0.5 }, { scale: 1, duration: 0.5, ease: "back.out(1.5)" });
+                gsap.fromTo($alertBox.find('.custom-alert-box')[0], { scale: 0.5 }, { scale: 1, duration: 0.5, ease: "back.out(1.5)" });
             }
         }
     } else {
-        form.reportValidity();
+        form.reportValidity(); // Memaksa browser menampilkan error validasi standar HTML5
     }
 }
 
 function tutupAlert() {
-    const alertBox = document.getElementById('customAlert');
-    if (alertBox) {
+    const $alertBox = $('#customAlert');
+    if ($alertBox.length) {
         if (typeof gsap !== 'undefined') {
-            gsap.to(alertBox.querySelector('.custom-alert-box'), { scale: 0.8, duration: 0.3, ease: "power2.in" });
+            gsap.to($alertBox.find('.custom-alert-box')[0], { scale: 0.8, duration: 0.3, ease: "power2.in" });
         }
-        setTimeout(() => { alertBox.classList.remove('show'); }, 300);
+        setTimeout(() => { $alertBox.removeClass('show'); }, 300);
     }
-    const form = document.getElementById('contactForm');
+    
+    // Reset form setelah sukses
+    const form = $('#contactForm')[0];
     if (form) form.reset();
 }
 
 function copyEmailToClipboard() {
     const email = "putrafirdaus6373@gmail.com";
     navigator.clipboard.writeText(email).then(() => {
-        const alertBox = document.getElementById('customAlert');
-        if (alertBox) {
-            alertBox.querySelector('h3').textContent = "Email Disalin!";
-            alertBox.querySelector('p').textContent = "Alamat email telah disalin ke clipboard.";
-            alertBox.classList.add('show');
+        const $alertBox = $('#customAlert');
+        if ($alertBox.length) {
+            $alertBox.find('h3').text("Email Disalin!");
+            $alertBox.find('p').text("Alamat email telah disalin ke clipboard.");
+            $alertBox.addClass('show');
             if (typeof gsap !== 'undefined') {
-                gsap.fromTo(alertBox.querySelector('.custom-alert-box'), { scale: 0.5 }, { scale: 1, duration: 0.5, ease: "back.out(1.5)" });
+                gsap.fromTo($alertBox.find('.custom-alert-box')[0], { scale: 0.5 }, { scale: 1, duration: 0.5, ease: "back.out(1.5)" });
             }
         } else {
             alert("Email disalin: " + email);
