@@ -1,114 +1,187 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Daftarkan plugin GSAP
+    if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        /* --------------------------------------------------
+           PRELOADER & HERO ANIMATION (GSAP)
+        -------------------------------------------------- */
+        const preloaderTimeline = gsap.timeline();
+        
+        preloaderTimeline.to(".preloader-progress", { width: "100%", duration: 1.2, ease: "power2.inOut" })
+        .to(".preloader", { yPercent: -100, duration: 0.8, ease: "power3.inOut" })
+        .from(".reveal-hero", { y: 30, autoAlpha: 0, duration: 1, stagger: 0.15, ease: "back.out(1.2)" }, "-=0.3")
+        .call(typeEffect); // Panggil fungsi ngetik setelah animasi hero muncul
+
+        /* --------------------------------------------------
+           ADVANCED TYPING EFFECT (CINEMATIC)
+        -------------------------------------------------- */
+        const dynamicText = document.querySelector('.dynamic-text');
+        const phrases = [
+            "Lets Connect With me!", 
+            "Hey, I'm Putra Firdaus", 
+            "I'm a FrontEnd Dev"
+        ];
+        
+        let phraseIndex = 0;
+        let letterIndex = 0;
+        let currentText = "";
+        let isDeleting = false;
+
+        function typeEffect() {
+            if (!dynamicText) return;
+
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                currentText = currentPhrase.substring(0, letterIndex - 1);
+                letterIndex--;
+            } else {
+                currentText = currentPhrase.substring(0, letterIndex + 1);
+                letterIndex++;
+            }
+
+            dynamicText.textContent = currentText;
+
+            let typeSpeed = 100; 
+            if (isDeleting) typeSpeed /= 2;
+
+            if (!isDeleting && currentText === currentPhrase) {
+                typeSpeed = 2000; 
+                isDeleting = true;
+            } else if (isDeleting && currentText === "") {
+                isDeleting = false;
+                phraseIndex++;
+                if (phraseIndex >= phrases.length) phraseIndex = 0;
+                typeSpeed = 500;
+            }
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        /* --------------------------------------------------
+           GLOBAL CUSTOM CURSOR (GSAP)
+        -------------------------------------------------- */
+        const cursorDot = document.querySelector('.custom-cursor-dot');
+        const cursorOutline = document.querySelector('.custom-cursor-outline');
+
+        if(window.innerWidth > 768) {
+            window.addEventListener('mousemove', (e) => {
+                gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.1 });
+                gsap.to(cursorOutline, { x: e.clientX, y: e.clientY, duration: 0.5 });
+            });
+
+            // Hover state warna Hijau Neon
+            const hoverElements = document.querySelectorAll('a, button, input, textarea, .detail-pill, .certificate-item, .btn-submit');
+            hoverElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    gsap.to(cursorOutline, { scale: 1.5, borderColor: "rgba(34, 197, 94, 1)", backgroundColor: "rgba(34, 197, 94, 0.1)", duration: 0.2 });
+                });
+                el.addEventListener('mouseleave', () => {
+                    gsap.to(cursorOutline, { scale: 1, borderColor: "rgba(34, 197, 94, 0.5)", backgroundColor: "transparent", duration: 0.2 });
+                });
+            });
+        }
+
+        /* --------------------------------------------------
+           GSAP SCROLLTRIGGER (REVEAL ANIMATIONS)
+        -------------------------------------------------- */
+        gsap.utils.toArray('.reveal-up').forEach(elem => {
+            gsap.fromTo(elem, { y: 60, autoAlpha: 0 }, { scrollTrigger: { trigger: elem, start: "top 85%" }, y: 0, autoAlpha: 1, duration: 1, ease: "power3.out" });
+        });
+        
+        gsap.fromTo(".gsap-stagger-table", 
+            { x: -30, autoAlpha: 0 }, 
+            { scrollTrigger: { trigger: ".profile-table", start: "top 85%" }, x: 0, autoAlpha: 1, duration: 0.6, stagger: 0.1, ease: "power3.out" }
+        );
+        gsap.fromTo(".gsap-stagger-cert", 
+            { y: 50, autoAlpha: 0, scale: 0.9 }, 
+            { scrollTrigger: { trigger: ".certificate-flex", start: "top 85%" }, y: 0, autoAlpha: 1, scale: 1, duration: 0.8, stagger: 0.15, ease: "back.out(1.2)" }
+        );
+        gsap.fromTo(".gsap-stagger-project", 
+            { y: 60, autoAlpha: 0 }, 
+            { scrollTrigger: { trigger: ".project-grid", start: "top 85%" }, y: 0, autoAlpha: 1, duration: 0.8, stagger: 0.2, ease: "power3.out" }
+        );
+
+        /* --------------------------------------------------
+           BENTO BOX FLOATING ICONS
+        -------------------------------------------------- */
+        const icons = document.querySelectorAll('.float-icon');
+        icons.forEach((icon, index) => {
+            gsap.to(icon, {
+                y: "random(-15, 15)", x: "random(-15, 15)", rotation: "random(-10, 10)",
+                duration: "random(2, 4)", repeat: -1, yoyo: true, ease: "sine.inOut", delay: index * 0.5
+            });
+        });
+
+        /* --------------------------------------------------
+           MAGNETIC BUTTON EFFECT
+        -------------------------------------------------- */
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
+                const y = (e.clientY - rect.top - rect.height / 2) * 0.4;
+                gsap.to(btn, { x: x, y: y, duration: 0.3, ease: "power2.out" });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
+            });
+        });
+    }
 
     /* --------------------------------------------------
-       ELEMENT REFERENCES
+       HEADER & NAV SCROLL LOGIC
     -------------------------------------------------- */
-    const header          = document.getElementById('header');
-    const navLinksContainer = document.querySelector('nav ul.nav-links');
-    const menuToggle      = document.querySelector('.menu-toggle');
-    const navLinks        = document.querySelectorAll('.nav-link');
-    const sections        = document.querySelectorAll('main section');
-    const scrollToTopBtn  = document.querySelector('.scroll-to-top');
+    const header = document.getElementById('header');
     const scrollProgressBar = document.getElementById('scrollProgressBar');
+    const scrollToTopBtn = document.querySelector('.scroll-to-top');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('main section');
 
-    /* --------------------------------------------------
-       SCROLL PROGRESS BAR
-    -------------------------------------------------- */
-    function updateScrollProgress() {
+    window.addEventListener('scroll', function () {
         const scrollTop  = window.pageYOffset;
         const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
         const progress   = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
         if (scrollProgressBar) scrollProgressBar.style.width = progress + '%';
-    }
 
-    /* --------------------------------------------------
-       SCROLL: Header Effect + Active Nav + Scroll-to-Top
-    -------------------------------------------------- */
-    window.addEventListener('scroll', function () {
-        updateScrollProgress();
-
-        // Header shrink on scroll
         if (header) header.classList.toggle('scrolled', window.scrollY > 30);
 
-        // Scroll-to-top button visibility
         if (scrollToTopBtn) {
             if (window.pageYOffset > 200) {
                 if (scrollToTopBtn.style.display !== 'flex') {
                     scrollToTopBtn.style.display = 'flex';
-                    void scrollToTopBtn.offsetWidth; // trigger reflow
-                    scrollToTopBtn.style.opacity = '1';
+                    if (typeof gsap !== 'undefined') gsap.to(scrollToTopBtn, { autoAlpha: 1, duration: 0.3 });
                 }
             } else {
-                scrollToTopBtn.style.opacity = '0';
-                setTimeout(() => {
-                    if (window.pageYOffset <= 200) scrollToTopBtn.style.display = 'none';
-                }, 300);
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(scrollToTopBtn, { autoAlpha: 0, duration: 0.3, onComplete: () => { scrollToTopBtn.style.display = 'none'; } });
+                }
             }
         }
 
-        // Active nav highlight
         let currentSectionId = '';
-        let minDistance = Infinity;
-        const headerH = header ? header.offsetHeight : 70;
-
         sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            const distanceToTop = Math.abs(window.pageYOffset - (section.offsetTop - headerH - 50));
-
-            if (rect.top <= headerH + 50 && rect.bottom >= headerH + 50) {
-                if (distanceToTop < minDistance) {
-                    minDistance = distanceToTop;
-                    currentSectionId = section.getAttribute('id');
-                }
-            } else if (rect.bottom > headerH + 50 && rect.top < window.innerHeight && distanceToTop < minDistance) {
-                minDistance = distanceToTop;
+            if (window.pageYOffset >= (section.offsetTop - 150)) {
                 currentSectionId = section.getAttribute('id');
             }
         });
-
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') && link.getAttribute('href').substring(1) === currentSectionId) {
-                link.classList.add('active');
-            }
+            if (link.getAttribute('href') === `#${currentSectionId}`) { link.classList.add('active'); }
         });
-
-        // Default to Home link when at very top
-        if (sections.length > 0 && window.pageYOffset < sections[0].offsetTop - headerH - 100) {
+        if (sections.length > 0 && window.pageYOffset < sections[0].offsetTop - 100) {
             navLinks.forEach(link => link.classList.remove('active'));
-            const homeLink = document.querySelector('nav ul li a[href="#hero"]');
-            if (homeLink) homeLink.classList.add('active');
+            const homeNav = document.querySelector('nav ul li a[href="#hero"]');
+            if(homeNav) homeNav.classList.add('active');
         }
     });
 
     /* --------------------------------------------------
-       DARK MODE TOGGLE
-    -------------------------------------------------- */
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-    const icon = darkModeToggle ? darkModeToggle.querySelector('i') : null;
-
-    if (darkModeToggle && icon) {
-        if (localStorage.getItem('darkMode') === 'disabled') {
-            body.classList.remove('dark-mode');
-            icon.classList.replace('fa-sun', 'fa-moon');
-        } else {
-            body.classList.add('dark-mode');
-            icon.classList.replace('fa-moon', 'fa-sun');
-        }
-
-        darkModeToggle.addEventListener('click', function () {
-            body.classList.toggle('dark-mode');
-            const isDark = body.classList.contains('dark-mode');
-            icon.classList.toggle('fa-sun', isDark);
-            icon.classList.toggle('fa-moon', !isDark);
-            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-        });
-    }
-
-    /* --------------------------------------------------
        MOBILE MENU TOGGLE
     -------------------------------------------------- */
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinksContainer = document.querySelector('nav ul.nav-links');
     if (menuToggle) {
         menuToggle.addEventListener('click', function () {
             const isOpen = navLinksContainer && navLinksContainer.classList.toggle('active');
@@ -116,7 +189,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.style.overflow = isOpen ? 'hidden' : '';
         });
     }
-
     navLinks.forEach(link => {
         link.addEventListener('click', function () {
             if (navLinksContainer && navLinksContainer.classList.contains('active')) {
@@ -127,27 +199,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    document.addEventListener('click', function (e) {
-        const insideNav    = navLinksContainer && navLinksContainer.contains(e.target);
-        const onToggle     = menuToggle && menuToggle.contains(e.target);
-        const menuIsOpen   = navLinksContainer && navLinksContainer.classList.contains('active');
-
-        if (!insideNav && !onToggle && menuIsOpen) {
-            navLinksContainer.classList.remove('active');
-            if (menuToggle) menuToggle.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-    });
-
-    /* --------------------------------------------------
-       CURRENT YEAR IN FOOTER
-    -------------------------------------------------- */
     const currentYearSpan = document.getElementById('currentYear');
     if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
 
-    /* --------------------------------------------------
-       SCROLL TO TOP BUTTON
-    -------------------------------------------------- */
     if (scrollToTopBtn) {
         scrollToTopBtn.addEventListener('click', function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -155,42 +209,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* --------------------------------------------------
-       TYPEWRITER EFFECT
-    -------------------------------------------------- */
-    const typingElements = document.querySelectorAll('.typing-effect');
-    let typingDelay = 500;
-
-    typingElements.forEach(element => {
-        const textToType = element.getAttribute('data-text');
-        element.textContent = '';
-
-        setTimeout(() => {
-            let charIndex = 0;
-            element.classList.add('active-cursor');
-
-            function typeWriter() {
-                if (charIndex < textToType.length) {
-                    element.textContent += textToType.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeWriter, 50);
-                } else {
-                    element.classList.remove('active-cursor');
-                }
-            }
-            typeWriter();
-        }, typingDelay);
-
-        typingDelay += (textToType.length * 50) + 800;
-    });
-
-    /* --------------------------------------------------
-       CURSOR SHOWCASE (Portfolio Hover Effect)
+       CURSOR SHOWCASE (Portfolio Hover)
     -------------------------------------------------- */
     const cursorShowcase = document.getElementById('cursorShowcase');
     const projectItems   = document.querySelectorAll('.project-item');
+    const cursorDot = document.querySelector('.custom-cursor-dot');
+    const cursorOutline = document.querySelector('.custom-cursor-outline');
 
     document.addEventListener('mousemove', e => {
-        if (cursorShowcase) {
+        if (cursorShowcase && window.innerWidth > 768) {
             cursorShowcase.style.setProperty('--x', e.clientX + 'px');
             cursorShowcase.style.setProperty('--y', e.clientY + 'px');
         }
@@ -199,76 +226,37 @@ document.addEventListener('DOMContentLoaded', function () {
     projectItems.forEach(item => {
         item.addEventListener('mouseenter', function () {
             const img = this.querySelector('.project-image-container img');
-            if (img && cursorShowcase) {
+            if (img && cursorShowcase && window.innerWidth > 768) {
+                if (typeof gsap !== 'undefined') gsap.to([cursorDot, cursorOutline], { autoAlpha: 0, duration: 0.2 });
                 cursorShowcase.style.backgroundImage = `url(${img.src})`;
                 cursorShowcase.classList.add('visible');
             }
         });
         item.addEventListener('mouseleave', function () {
-            if (cursorShowcase) cursorShowcase.classList.remove('visible');
-        });
-    });
-
-    /* --------------------------------------------------
-       INTERSECTION OBSERVER — REVEAL ANIMATIONS
-    -------------------------------------------------- */
-    const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
-
-    const revealObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                revealObserver.unobserve(entry.target);
+            if (cursorShowcase && window.innerWidth > 768) {
+                if (typeof gsap !== 'undefined') gsap.to([cursorDot, cursorOutline], { autoAlpha: 1, duration: 0.2 });
+                cursorShowcase.classList.remove('visible');
             }
         });
-    }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
     });
-
-    revealElements.forEach(el => revealObserver.observe(el));
-
-    /* --------------------------------------------------
-       MAGNETIC BUTTON EFFECT
-    -------------------------------------------------- */
-    const magneticBtns = document.querySelectorAll('.magnetic-btn');
-
-    magneticBtns.forEach(btn => {
-        btn.addEventListener('mousemove', e => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px)`;
-        });
-
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = '';
-            btn.style.transition = 'transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.3s ease, box-shadow 0.3s ease';
-        });
-
-        btn.addEventListener('mouseenter', () => {
-            btn.style.transition = 'transform 0.12s linear, background-color 0.3s ease, box-shadow 0.3s ease';
-        });
-    });
-
-    /* --------------------------------------------------
-       INIT: Call scroll once to set initial progress
-    -------------------------------------------------- */
-    updateScrollProgress();
-
-}); // End DOMContentLoaded
-
+}); 
 
 /* --------------------------------------------------
-   CUSTOM ALERT — CONTACT FORM
+   CUSTOM ALERT & COPY EMAIL FUNCTION
 -------------------------------------------------- */
 function tampilkanAlert() {
     const form = document.getElementById('contactForm');
     if (!form) return;
-
     if (form.checkValidity()) {
         const alertBox = document.getElementById('customAlert');
-        if (alertBox) alertBox.classList.add('show');
+        if (alertBox) {
+            alertBox.querySelector('h3').textContent = "Berhasil!";
+            alertBox.querySelector('p').textContent = "Pesan kamu sudah terkirim.";
+            alertBox.classList.add('show');
+            if (typeof gsap !== 'undefined') {
+                gsap.fromTo(alertBox.querySelector('.custom-alert-box'), { scale: 0.5 }, { scale: 1, duration: 0.5, ease: "back.out(1.5)" });
+            }
+        }
     } else {
         form.reportValidity();
     }
@@ -276,7 +264,31 @@ function tampilkanAlert() {
 
 function tutupAlert() {
     const alertBox = document.getElementById('customAlert');
-    if (alertBox) alertBox.classList.remove('show');
+    if (alertBox) {
+        if (typeof gsap !== 'undefined') {
+            gsap.to(alertBox.querySelector('.custom-alert-box'), { scale: 0.8, duration: 0.3, ease: "power2.in" });
+        }
+        setTimeout(() => { alertBox.classList.remove('show'); }, 300);
+    }
     const form = document.getElementById('contactForm');
     if (form) form.reset();
+}
+
+function copyEmailToClipboard() {
+    const email = "putrafirdaus6373@gmail.com";
+    navigator.clipboard.writeText(email).then(() => {
+        const alertBox = document.getElementById('customAlert');
+        if (alertBox) {
+            alertBox.querySelector('h3').textContent = "Email Disalin!";
+            alertBox.querySelector('p').textContent = "Alamat email telah disalin ke clipboard.";
+            alertBox.classList.add('show');
+            if (typeof gsap !== 'undefined') {
+                gsap.fromTo(alertBox.querySelector('.custom-alert-box'), { scale: 0.5 }, { scale: 1, duration: 0.5, ease: "back.out(1.5)" });
+            }
+        } else {
+            alert("Email disalin: " + email);
+        }
+    }).catch(err => {
+        console.error('Gagal menyalin email: ', err);
+    });
 }
