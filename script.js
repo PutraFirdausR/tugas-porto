@@ -1,4 +1,3 @@
-// Memastikan semua elemen HTML diload sebelum script dijalankan (Pengganti DOMContentLoaded)
 $(document).ready(function () {
     
     // Daftarkan plugin GSAP
@@ -6,14 +5,42 @@ $(document).ready(function () {
         gsap.registerPlugin(ScrollTrigger);
 
         /* --------------------------------------------------
-           PRELOADER & HERO ANIMATION (GSAP)
+           HACKER PRELOADER ANIMATION
         -------------------------------------------------- */
-        const preloaderTimeline = gsap.timeline();
+        const hackerLines = [
+            "> Initializing system core...",
+            "> Establishing secure connection...",
+            "> Bypassing security protocols...",
+            "> Decrypting data [100%]...",
+            "> Portofolio Putra Firdaus",
+            "> Loading visual interface..."
+        ];
         
-        preloaderTimeline.to(".preloader-progress", { width: "100%", duration: 1.2, ease: "power2.inOut" })
-        .to(".preloader", { yPercent: -100, duration: 0.8, ease: "power3.inOut" })
-        .from(".reveal-hero", { y: 30, autoAlpha: 0, duration: 1, stagger: 0.15, ease: "back.out(1.2)" }, "-=0.3")
-        .call(typeEffect); // Panggil fungsi ngetik setelah animasi hero muncul
+        let hackerLineIndex = 0;
+        const $hackerText = $('#hacker-text');
+        
+        function typeHackerLine() {
+            if (hackerLineIndex < hackerLines.length) {
+                // Tambahkan baris teks dengan kedipan kursor palsu
+                $hackerText.append('<span>' + hackerLines[hackerLineIndex] + '</span><br>');
+                hackerLineIndex++;
+                
+                // Jeda random antara 200ms - 500ms agar terlihat seperti sedang memproses sungguhan
+                let randomDelay = Math.floor(Math.random() * 300) + 200;
+                setTimeout(typeHackerLine, randomDelay);
+            } else {
+                // Teks selesai, mulai animasi preloader loading bar dan buka halaman
+                const preloaderTimeline = gsap.timeline();
+                
+                preloaderTimeline.to(".preloader-progress", { width: "100%", duration: 1, ease: "power2.inOut" })
+                .to(".preloader", { yPercent: -100, duration: 0.8, ease: "power3.inOut", delay: 0.2 })
+                .from(".reveal-hero", { y: 30, autoAlpha: 0, duration: 1, stagger: 0.15, ease: "back.out(1.2)" }, "-=0.3")
+                .call(typeEffect); // Panggil fungsi ngetik di hero section setelah loading hilang
+            }
+        }
+        
+        // Mulai jalankan teks hacker-nya
+        typeHackerLine();
 
         /* --------------------------------------------------
            ADVANCED TYPING EFFECT (CINEMATIC) DENGAN JQUERY
@@ -284,3 +311,99 @@ function copyEmailToClipboard() {
         console.error('Gagal menyalin email: ', err);
     });
 }
+
+        /* --------------------------------------------------
+           MINI GAME: TANGKAP BUG
+        -------------------------------------------------- */
+        let score = 0;
+        let timeLeft = 15;
+        let gameInterval;
+        let moveInterval;
+        let isPlaying = false;
+        
+        const $bug = $('#bug');
+        const $scoreDisplay = $('#score');
+        const $timerDisplay = $('#timer');
+        const $startBtn = $('#startGameBtn');
+        const $gameArea = $('.game-area');
+        
+        function moveBug() {
+            // Menghitung batas area agar bug tidak keluar kotak
+            const maxX = $gameArea.width() - 40; 
+            const maxY = $gameArea.height() - 40;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            $bug.css({
+                top: randomY + 'px',
+                left: randomX + 'px'
+            });
+        }
+        
+        $startBtn.on('click', function() {
+            if(isPlaying) return;
+            isPlaying = true;
+            score = 0;
+            timeLeft = 15;
+            
+            $scoreDisplay.text(score);
+            $timerDisplay.text(timeLeft);
+            $startBtn.prop('disabled', true).text('Membasmi Bug...');
+            $bug.show();
+            
+            moveBug(); // Gerakkan bug pertama kali
+            
+            // Bug berpindah setiap 800ms
+            moveInterval = setInterval(moveBug, 800);
+            
+            // Hitung mundur waktu
+            gameInterval = setInterval(() => {
+                timeLeft--;
+                $timerDisplay.text(timeLeft);
+                
+                if(timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        });
+        
+        $bug.on('click', function() {
+            if(!isPlaying) return;
+            
+            score++;
+            $scoreDisplay.text(score);
+            
+            // Animasi pop saat bug diklik menggunakan GSAP
+            if (typeof gsap !== 'undefined') {
+                gsap.fromTo(this, { scale: 0.3 }, { scale: 1, duration: 0.3, ease: "back.out(2)" });
+            }
+            
+            // Segera pindahkan bug setelah diklik agar lebih menantang
+            moveBug();
+            
+            // Reset interval agar bug tidak tiba-tiba lompat dua kali
+            clearInterval(moveInterval);
+            moveInterval = setInterval(moveBug, 800);
+        });
+        
+        function endGame() {
+            isPlaying = false;
+            clearInterval(gameInterval);
+            clearInterval(moveInterval);
+            $bug.hide();
+            $startBtn.prop('disabled', false).text('Main Lagi');
+            
+            // Menggunakan custom alert milikmu yang sudah ada di script.js
+            const $alertBox = $('#customAlert');
+            if ($alertBox.length) {
+                $alertBox.find('h3').text("Waktu Habis!");
+                $alertBox.find('p').text(`Hebat! Kamu berhasil membasmi ${score} bug!`);
+                $alertBox.addClass('show');
+                if (typeof gsap !== 'undefined') {
+                    gsap.fromTo($alertBox.find('.custom-alert-box')[0], { scale: 0.5 }, { scale: 1, duration: 0.5, ease: "back.out(1.5)" });
+                }
+            } else {
+                alert(`Waktu Habis! Kamu berhasil menangkap ${score} bug.`);
+            }
+        }

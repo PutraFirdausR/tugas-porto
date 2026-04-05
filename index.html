@@ -13,8 +13,17 @@
 <body>
 
     <div class="preloader">
-        <div class="preloader-text text-white">Putra<span class="text-accent">Firdaus.</span></div>
-        <div class="preloader-progress"></div>
+        <div class="terminal-loader">
+            <div class="terminal-header">
+                <span class="btn-mac red"></span>
+                <span class="btn-mac yellow"></span>
+                <span class="btn-mac green"></span>
+                <span class="terminal-title">root@system:~</span>
+            </div>
+            <div class="terminal-body" id="hacker-text">
+                </div>
+            <div class="preloader-progress"></div>
+        </div>
     </div>
 
     <div class="custom-cursor-dot"></div>
@@ -70,7 +79,7 @@
                             <i class="fa-brands fa-github me-2"></i> Github
                         </a>
                         <a href="#projects" class="btn-spotlight-solid magnetic-btn hero-btn">
-                            <i class="fa-regular fa-folder-open me-2"></i> View CV <i class="fa-solid fa-chevron-down ms-1"></i>
+                            <i class="fa-regular fa-folder-open me-2"></i> Portofolio <i class="fa-solid fa-chevron-down ms-1"></i>
                         </a>
                     </div>
                 </div>
@@ -164,15 +173,17 @@
                     <div class="bento-content">
                         <h4 class="bento-subheading text-white">Tech Stack</h4>
                         <p class="bento-text-sm mb-3 text-white-50">Spesialisasi dalam menggunakan bahasa dan alat modern yang menenagai aplikasi masa depan yang responsif.</p>
-                        <div class="stack-icons-row">
-                            <i class="fa-brands fa-html5"></i>
-                            <i class="fa-brands fa-css3-alt"></i>
-                            <i class="fa-brands fa-js"></i>
-                            <i class="fa-brands fa-vuejs"></i>
-                            <i class="fa-brands fa-php"></i>
-                            <i class="fa-brands fa-sass"></i>
-                            <i class="fa-brands fa-figma"></i>
-                            <i class="fa-brands fa-git-alt"></i>
+                        
+                        <div class="tech-stack-container">
+                            <span class="tech-badge"><i class="fa-brands fa-python"></i> Python</span>
+                            <span class="tech-badge"><i class="fa-brands fa-js"></i> JavaScript</span>
+                            <span class="tech-badge"><i class="fa-brands fa-vuejs"></i> Vue</span>
+                            <span class="tech-badge"><i class="fa-brands fa-react"></i> React</span>
+                            <span class="tech-badge"><i class="fa-solid fa-wind"></i> Tailwind</span>
+                            <span class="tech-badge"><i class="fa-brands fa-bootstrap"></i> Bootstrap</span>
+                            <span class="tech-badge"><i class="fa-solid fa-database"></i> MySQL</span>
+                            <span class="tech-badge"><i class="fa-solid fa-code"></i> VS Code</span>
+                            <span class="tech-badge"><i class="fa-brands fa-npm"></i> NPM</span>
                         </div>
                     </div>
                 </div>
@@ -466,6 +477,24 @@
                 </div>
             </div>
         </section>
+
+        <section id="minigame" class="py-5" style="border-top: 1px solid rgba(255,255,255,0.08);">
+        <div class="container text-center">
+            <h2 class="section-title mb-3">Time to Break: <span class="text-accent">Tangkap Bug!</span></h2>
+            <p class="text-secondary mb-4">Sebagai developer, tugas kita adalah membasmi bug. Uji kecepatan tanganmu, tangkap sebanyak mungkin dalam 15 detik!</p>
+            
+            <div class="d-flex justify-content-center align-items-center mb-3 gap-4">
+                <span class="fs-5 fw-bold text-white">Skor: <span id="score" class="text-accent fs-4">0</span></span>
+                <span class="fs-5 fw-bold text-white">Waktu: <span id="timer" class="text-accent fs-4">15</span>s</span>
+            </div>
+            
+            <button id="startGameBtn" class="btn btn-outline-success mb-4" style="border-color: var(--accent); color: var(--accent);">Mulai Main</button>
+            
+            <div class="game-area mx-auto relative">
+                <i class="fa-solid fa-bug bug-icon" id="bug"></i>
+            </div>
+        </div>
+    </section>
 
         <section id="contact" class="container">
             <div class="section-number" aria-hidden="true">05</div>

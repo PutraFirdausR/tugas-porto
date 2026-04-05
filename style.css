@@ -39,15 +39,103 @@ a, button, input, textarea, .project-item, .detail-pill, .certificate-item { cur
 .text-accent { color: var(--accent); }
 
 /* =========================================
-   PRELOADER (GSAP)
+   MINI GAME: TANGKAP BUG
+   ========================================= */
+.game-area {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    background: var(--bg-card);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: crosshair; /* Cursor berubah jadi target */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.bug-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 2rem;
+    color: var(--accent);
+    cursor: pointer;
+    display: none; /* Disembunyikan sebelum tombol Mulai ditekan */
+    transition: transform 0.1s;
+    user-select: none;
+}
+
+.bug-icon:active {
+    transform: scale(0.7);
+}
+
+/* Memastikan tombol start tetap hijau ketika di hover */
+#startGameBtn:hover {
+    background-color: var(--accent);
+    color: var(--bg-main) !important;
+}
+
+/* =========================================
+   HACKER PRELOADER
    ========================================= */
 .preloader {
-    position: fixed; inset: 0; background: var(--bg-main); z-index: 10000;
+    position: fixed; inset: 0; background: #000; z-index: 10000;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
+    /* Font ala terminal/coding */
+    font-family: 'Courier New', Courier, monospace; 
 }
-.preloader-text { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 20px; }
-.preloader-progress { width: 0%; height: 4px; background: var(--accent); max-width: 250px; border-radius: 5px; }
 
+.terminal-loader {
+    width: 90%;
+    max-width: 500px;
+    background: #0a0a0c;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); /* Cahaya glow hijau */
+    overflow: hidden;
+}
+
+.terminal-header {
+    background: #1a1a1d;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.btn-mac {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.btn-mac.red { background: #ff5f56; }
+.btn-mac.yellow { background: #ffbd2e; }
+.btn-mac.green { background: #27c93f; }
+
+.terminal-title {
+    color: #888;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.terminal-body {
+    padding: 20px;
+    color: var(--accent); /* Warna teks hijau neon */
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: left;
+    height: 180px; /* Menjaga agar terminal tidak membesar */
+}
+
+.preloader-progress { 
+    width: 0%; 
+    height: 2px; 
+    background: var(--accent); 
+    box-shadow: 0 0 10px var(--accent);
+}
+s
 /* =========================================
    GLOBAL CUSTOM CURSOR
    ========================================= */
@@ -253,9 +341,41 @@ section h2.section-title::after { content: ''; position: absolute; bottom: 0; le
 .float-icon.i-2 { bottom: 20%; right: 15%; color: #41b883; }
 .float-icon.i-3 { top: 25%; right: 25%; color: #3776ab; }
 
-.stack-icons-row { display: flex; gap: 15px; font-size: 1.8rem; color: var(--text-muted); margin-top: 15px; }
-.stack-icons-row i { transition: color 0.3s ease, transform 0.3s ease; }
-.stack-icons-row i:hover { color: var(--accent); transform: translateY(-5px); }
+/* =========================================
+   TECH STACK BADGES (BENTO BOX)
+   ========================================= */
+.tech-stack-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 6px; 
+    margin-top: 10px;
+}
+
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.tech-badge i {
+    font-size: 0.85rem;
+}
+
+.tech-badge:hover {
+    background: var(--accent);
+    color: var(--bg-main);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3);
+}
 
 /* =========================================
    EXPERIENCE TABLE (MODERNIZED)
